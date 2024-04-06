@@ -36,6 +36,7 @@ import com.techdetect.digisecure.R
 import com.techdetect.digisecure.app_components.BodyLargeRegular
 import com.techdetect.digisecure.app_components.BodyMediumMedium
 import com.techdetect.digisecure.app_components.BodySmallMedium
+import com.techdetect.digisecure.app_components.BodySmallRegular
 import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.LargeSpacer
 import com.techdetect.digisecure.app_components.LargestSpacer
@@ -222,19 +223,11 @@ fun SignUpScreen() {
         )
 
         if (errorMessage.isNotEmpty()) {
-            Text(
-                text = errorMessage,
-                color = Color.Red,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
+            BodySmallRegular(value = errorMessage)
         }
 
         if (inputErrorMessage.isNotEmpty()) {
-            Text(
-                text = inputErrorMessage,
-                color = Color.Red,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
+            BodySmallRegular(value = inputErrorMessage)
         }
         LargestSpacer
         Button(
