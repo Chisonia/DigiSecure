@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.techdetect.digisecure.app_components.BodyLargeRegular
 import com.techdetect.digisecure.app_components.BodySmallRegular
 import com.techdetect.digisecure.app_components.DisplayTwo
@@ -33,7 +34,7 @@ import com.techdetect.digisecure.ui.theme.SecondaryBlue1LightActive
 import com.techdetect.digisecure.ui.theme.TransparentColor
 
 @Composable
-fun VerificationScreen() {
+fun VerificationScreen(navController: NavHostController) {
     var verificationCodeFirst by remember { mutableStateOf("") }
     var verificationCodeSecond by remember { mutableStateOf("") }
     var verificationCodeThird by remember { mutableStateOf("") }

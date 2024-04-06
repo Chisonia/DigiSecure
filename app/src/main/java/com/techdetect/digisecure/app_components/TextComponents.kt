@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.techdetect.digisecure.R
 import com.techdetect.digisecure.ui.theme.DefaultColor
+import com.techdetect.digisecure.ui.theme.PrimaryGreenNormal
 import com.techdetect.digisecure.ui.theme.PrimaryHoverLight
 import com.techdetect.digisecure.ui.theme.TextColor
 
@@ -175,6 +176,18 @@ fun BodyLargeRegular(value: String){
     )
 }
 
+@Composable
+fun BodyLargeRegularLight(value: String){
+    Text(
+        text = value,
+        color = PrimaryGreenNormal,
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.Normal,
+        style = TextStyle(
+            fontSize = 20.sp,
+        )
+    )
+}
+
 
 @Composable
 fun BodyMediumSemiBold(value: String){
@@ -195,6 +208,34 @@ fun BodyMediumMedium(value: String){
         modifier = Modifier
             .fillMaxWidth(),
         color = DefaultColor,
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.Medium,
+        style = TextStyle(
+            fontSize = 18.sp,
+        )
+    )
+}
+
+
+@Composable
+fun BodyMediumMediumTextColor(value: String){
+    Text(
+        text = value,
+        modifier = Modifier
+            .fillMaxWidth(),
+        color = TextColor,
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.Medium,
+        style = TextStyle(
+            fontSize = 18.sp,
+        )
+    )
+}
+@Composable
+fun BodyMediumMediumLight(value: String){
+    Text(
+        text = value,
+        modifier = Modifier
+            .fillMaxWidth(),
+        color = PrimaryHoverLight,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.Medium,
         style = TextStyle(
             fontSize = 18.sp,

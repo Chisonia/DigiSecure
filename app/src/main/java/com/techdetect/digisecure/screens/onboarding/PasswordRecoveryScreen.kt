@@ -6,19 +6,20 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,11 +33,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.techdetect.digisecure.R
+import com.techdetect.digisecure.Routes
 import com.techdetect.digisecure.app_components.BodyLargeRegular
 import com.techdetect.digisecure.app_components.BodyMediumMedium
 import com.techdetect.digisecure.app_components.BodySmallMedium
-import com.techdetect.digisecure.app_components.BodySmallRegular
 import com.techdetect.digisecure.app_components.CaptionTwo
 import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.LargeSpacer
@@ -48,8 +50,9 @@ import com.techdetect.digisecure.ui.theme.PrimaryHoverNormal
 import com.techdetect.digisecure.ui.theme.TransparentColor
 import com.techdetect.digisecure.ui.theme.WarningColor
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordRecoveryScreen() {
+fun PasswordRecoveryScreen(navController: NavHostController) {
     var userEmail by remember { mutableStateOf("") }
     var inputErrorMessage by remember { mutableStateOf("") }
     var areFieldsFilled by remember { mutableStateOf(false) }
@@ -61,7 +64,21 @@ fun PasswordRecoveryScreen() {
             else -> ""
         }
     }
-
+    TopAppBar(
+        title = {},
+        navigationIcon = {
+            IconButton(
+                onClick = {navController.navigate(Routes.SignInRoute)
+                }
+            )
+            {
+                Icon(
+                    painter = painterResource(id = R.drawable.back_icon),
+                    contentDescription = "Back Button"
+                )
+            }
+        }
+    )
     Image(
         painter = painterResource(id = R.drawable.onboarding_background),
         contentDescription = null,
@@ -108,12 +125,13 @@ fun PasswordRecoveryScreen() {
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ){
-            CaptionTwo(value = "Remember Password Now?")
             TextButton(
                 onClick = {},
+                modifier = Modifier
+                    .padding(bottom = 20.dp)
 
             ) {
-                CaptionTwo(value = "Go Back")
+                CaptionTwo(value = "Resend Code")
 
             }
         }
@@ -138,15 +156,6 @@ fun PasswordRecoveryScreen() {
             modifier = Modifier.fillMaxWidth()
         ) {
             BodyLargeRegular(value = "Send Code")
-        }
-        TextButton(
-            onClick = {},
-            modifier = Modifier
-                .padding(bottom = 20.dp)
-
-        ) {
-            CaptionTwo(value = "Resend Code")
-
         }
     }
 }

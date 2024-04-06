@@ -1,22 +1,17 @@
 package com.techdetect.digisecure.screens.onboarding
 
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -37,7 +32,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.techdetect.digisecure.R
+import com.techdetect.digisecure.Routes
 import com.techdetect.digisecure.app_components.BodyLargeRegular
 import com.techdetect.digisecure.app_components.BodyMediumMedium
 import com.techdetect.digisecure.app_components.BodySmallMedium
@@ -47,8 +44,6 @@ import com.techdetect.digisecure.app_components.ForgotPassword
 import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.LargeSpacer
 import com.techdetect.digisecure.app_components.LargestSpacer
-import com.techdetect.digisecure.app_components.MediumSpacer
-import com.techdetect.digisecure.app_components.NewUser
 import com.techdetect.digisecure.app_components.SmallSpacer
 import com.techdetect.digisecure.app_components.componentShape
 import com.techdetect.digisecure.ui.theme.PrimaryGreenLight
@@ -58,7 +53,7 @@ import com.techdetect.digisecure.ui.theme.WarningColor
 
 
 @Composable
-fun SignInScreen() {
+fun SignInScreen(navController: NavHostController) {
     var password by remember { mutableStateOf("") }
     var userEmail by remember { mutableStateOf("") }
     var areFieldsFilled by remember { mutableStateOf(false) }
@@ -161,7 +156,20 @@ fun SignInScreen() {
                 .background(PrimaryGreenLight)
         )
         SmallSpacer
-        ForgotPassword()
+        Row (
+            horizontalArrangement = Arrangement.End,
+            modifier = Modifier.fillMaxWidth()
+        ){
+            TextButton(
+                onClick = {navController.navigate(Routes.PasswordRecoveryRoute)},
+                modifier = Modifier
+                    .padding(bottom = 20.dp)
+
+            ) {
+                BodySmallMedium(value = "Forgot Password?")
+
+            }
+        }
 
         if (inputErrorMessage.isNotEmpty()) {
             Text(
@@ -195,7 +203,7 @@ fun SignInScreen() {
         ) {
             CaptionTwo(value = "Don't Have An Account?")
             TextButton(
-                onClick = {}
+                onClick = {navController.navigate(Routes.DecisionRoute)}
             ) {
                 CaptionOne(value = "Sign Up")
             }

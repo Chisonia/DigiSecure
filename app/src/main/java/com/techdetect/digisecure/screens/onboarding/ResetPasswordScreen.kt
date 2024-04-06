@@ -5,13 +5,13 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -27,11 +27,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.techdetect.digisecure.R
 import com.techdetect.digisecure.app_components.BodyLargeRegular
 import com.techdetect.digisecure.app_components.BodyMediumMedium
-import com.techdetect.digisecure.app_components.BodySmallMedium
 import com.techdetect.digisecure.app_components.BodySmallRegular
 import com.techdetect.digisecure.app_components.CaptionTwo
 import com.techdetect.digisecure.app_components.HeadingThree
@@ -46,13 +49,18 @@ import com.techdetect.digisecure.ui.theme.TransparentColor
 import com.techdetect.digisecure.ui.theme.WarningColor
 
 @Composable
-fun ResetPasswordScreen(){
+fun ResetPasswordScreen(navController: NavHostController) {
     var inputErrorMessage by remember { mutableStateOf("") }
     var areFieldsFilled by remember { mutableStateOf(false) }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf("") }
+    var passwordVisibilty by remember { mutableStateOf(false) }
 
+    val icon = if (passwordVisibilty)
+        painterResource(id = R.drawable.visibility)
+    else
+        painterResource(id = R.drawable.visibilityoff)
 
     fun areFieldsEmpty(): String {
         return when {
@@ -84,19 +92,31 @@ fun ResetPasswordScreen(){
             onValueChange = {
                 password = it
                 inputErrorMessage = areFieldsEmpty()
-                areFieldsFilled = inputErrorMessage.isEmpty() && confirmPassword.isNotEmpty() // Validate only when confirmPassword is not empty
-                errorMessage = if (confirmPassword.isNotEmpty()) checkPasswords(it, confirmPassword) else ""
+                areFieldsFilled = inputErrorMessage.isEmpty()
             },
             placeholder = { BodyMediumMedium(value = "Password") },
             singleLine = true,
+            trailingIcon = {
+                IconButton(onClick = { passwordVisibilty = !passwordVisibilty })
+                {
+                    Image(
+                        painter = icon,
+                        contentDescription = "Visibility")
+                }
+            },
+            visualTransformation = if (passwordVisibilty) VisualTransformation.None
+            else
+                PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password
+            ),
             shape = componentShape.large,
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Color.Transparent,
                 unfocusedBorderColor = Color.Transparent,
                 disabledContainerColor = Color.Transparent,
                 errorContainerColor = WarningColor,
-
-                ),
+            ),
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(componentShape.large)
@@ -109,40 +129,51 @@ fun ResetPasswordScreen(){
             onValueChange = {
                 confirmPassword = it
                 inputErrorMessage = areFieldsEmpty()
-                areFieldsFilled = inputErrorMessage.isEmpty() && password.isNotEmpty() // Validate only when password is not empty
-                errorMessage = if (password.isNotEmpty()) checkPasswords(password, it) else ""
+                areFieldsFilled = inputErrorMessage.isEmpty()
+                if (password.isNotEmpty()) {
+                    errorMessage = checkPasswords(password, it)
+                } else {
+                    errorMessage = ""
+                }
             },
+            shape = componentShape.large,
             placeholder = { BodyMediumMedium(value = "Confirm Password") },
             singleLine = true,
-            shape = componentShape.large,
+            trailingIcon = {
+                IconButton(onClick = { passwordVisibilty = !passwordVisibilty })
+                {
+                    Image(
+                        painter = icon,
+                        contentDescription = "Visibility")
+                }
+            },
+            visualTransformation = if (passwordVisibilty) VisualTransformation.None
+            else
+                PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password
+            ),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Color.Transparent,
                 unfocusedBorderColor = Color.Transparent,
                 disabledContainerColor = Color.Transparent,
                 errorContainerColor = WarningColor,
-
-                ),
+            ),
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(componentShape.large)
                 .border(0.dp, Color.Transparent)
                 .background(PrimaryGreenLight)
         )
-        MediumSpacer
-        Row (
-            horizontalArrangement = Arrangement.End,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        ){
-            CaptionTwo(value = "Remember Password Now?")
-            TextButton(
-                onClick = {},
 
-            ) {
-                CaptionTwo(value = "Go Back")
-
-            }
+        if (errorMessage.isNotEmpty()) {
+            BodySmallRegular(value = errorMessage)
         }
+
+        if (inputErrorMessage.isNotEmpty()) {
+            BodySmallRegular(value = inputErrorMessage)
+        }
+        MediumSpacer
         if (errorMessage.isNotEmpty()) {
             Text(
                 text = errorMessage,

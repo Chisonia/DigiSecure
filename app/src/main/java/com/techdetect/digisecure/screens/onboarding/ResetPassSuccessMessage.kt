@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
@@ -17,32 +16,26 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.TileMode
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.techdetect.digisecure.R
+import com.techdetect.digisecure.Routes
 import com.techdetect.digisecure.app_components.BodyLargeRegular
 import com.techdetect.digisecure.app_components.BodyLargeSemiBold
-import com.techdetect.digisecure.app_components.LargeSpacer
-import com.techdetect.digisecure.app_components.LargestSpacer
 import com.techdetect.digisecure.app_components.MediumSpacer
 import com.techdetect.digisecure.app_components.poppinsFontFamily
-import com.techdetect.digisecure.ui.theme.PrimaryGreenLightActive
-import com.techdetect.digisecure.ui.theme.PrimaryGreenNormal
 import com.techdetect.digisecure.ui.theme.PrimaryHoverLight
 import com.techdetect.digisecure.ui.theme.PrimaryHoverNormal
 import com.techdetect.digisecure.ui.theme.TextColor
-import com.techdetect.digisecure.ui.theme.TransparentColor
 
 @Composable
-fun ResetSuccessMessage() {
+fun ResetSuccessMessage(navController: NavHostController) {
 
 
     Surface(
@@ -80,7 +73,7 @@ fun ResetSuccessMessage() {
                 )
                 MediumSpacer
                 Button(
-                    onClick = {},
+                    onClick = {navController.navigate(Routes.SignInRoute)},
                     colors = ButtonDefaults.buttonColors(
                         containerColor = PrimaryHoverNormal,
                         contentColor = Color.White,

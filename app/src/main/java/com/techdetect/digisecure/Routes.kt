@@ -9,5 +9,7 @@ object Routes {
     const val ResetSuccessRoute = "reset_success_screen_route"
     const val VerificationRoute = "verification_screen_route"
     const val VerificationSuccessRoute = "verification_success_screen_route"
+    const val DecisionRoute = "decision_screen_route"
+    const val SignUpCompRoute = "sign_up_comp_screen_route"
     // Add more route strings as needed
 }

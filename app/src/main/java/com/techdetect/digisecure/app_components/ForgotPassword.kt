@@ -7,16 +7,18 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import com.techdetect.digisecure.Routes
 
 
 @Composable
-fun ForgotPassword(){
+fun ForgotPassword(navController: NavHostController){
     Row (
         horizontalArrangement = Arrangement.End,
         modifier = Modifier.fillMaxWidth()
     ){
         TextButton(
-            onClick = {},
+            onClick = {navController.navigate(Routes.PasswordRecoveryRoute)},
             modifier = Modifier
                 .padding(bottom = 20.dp)
 
