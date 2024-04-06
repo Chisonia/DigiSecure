@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "139264050847",
+    "project_id": "digi-7942d",
+    "storage_bucket": "digi-7942d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139264050847:android:8faaf40d7044798f0604aa",
+        "android_client_info": {
+          "package_name": "com.techdetect.digisecure"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmfMQX4RV9TWIiGvnJQQcY9YREMUfiyAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,300 @@
+package com.techdetect.digisecure.screens.onboarding
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.dp
+import com.techdetect.digisecure.R
+import com.techdetect.digisecure.app_components.BodyLargeRegular
+import com.techdetect.digisecure.app_components.BodyMediumMedium
+import com.techdetect.digisecure.app_components.BodySmallMedium
+import com.techdetect.digisecure.app_components.HeadingThree
+import com.techdetect.digisecure.app_components.LargeSpacer
+import com.techdetect.digisecure.app_components.LargestSpacer
+import com.techdetect.digisecure.app_components.MediumSpacer
+import com.techdetect.digisecure.app_components.OldUser
+import com.techdetect.digisecure.app_components.SmallSpacer
+import com.techdetect.digisecure.app_components.componentShape
+import com.techdetect.digisecure.ui.theme.PrimaryGreenLight
+import com.techdetect.digisecure.ui.theme.PrimaryHoverNormal
+import com.techdetect.digisecure.ui.theme.TransparentColor
+import com.techdetect.digisecure.ui.theme.WarningColor
+
+@Composable
+fun SignUpCompScreen(){
+    var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
+    var userName by remember { mutableStateOf("") }
+    var officeRole by remember { mutableStateOf("") }
+    var companyEmail by remember { mutableStateOf("") }
+    var companyName by remember { mutableStateOf("") }
+    var areFieldsFilled by remember { mutableStateOf(false) }
+    var errorMessage by remember { mutableStateOf("") }
+    var inputErrorMessage by remember { mutableStateOf("") }
+
+    var passwordVisibility by remember { mutableStateOf(false) }
+
+    val icon = if (passwordVisibility)
+        painterResource(id = R.drawable.visibility)
+    else
+        painterResource(id = R.drawable.visibilityoff)
+    fun areFieldsEmpty(): String {
+        return when {
+            userName.isEmpty() -> "Full name is required"
+            officeRole.isEmpty() -> "Office role is required"
+            companyEmail.isEmpty() -> "Company email is required"
+            companyName.isEmpty() -> "Company name is required"
+            password.isEmpty() -> "Password is required"
+            confirmPassword.isEmpty() -> "Confirm password is required"
+            else -> ""
+        }
+    }
+    Image(
+        painter = painterResource(id = R.drawable.onboarding_background),
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+        modifier = Modifier
+            .fillMaxSize(),
+        alpha = 1F
+    )
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .padding(top = 94.dp, start = 16.dp, end = 16.dp)
+            .fillMaxSize()
+    ) {
+        HeadingThree(value = "Create New Account")
+        SmallSpacer
+        BodySmallMedium(value = "Please fill in the form to continue")
+        MediumSpacer
+        OutlinedTextField(
+            value = userName,
+            onValueChange = {
+                userName = it
+                inputErrorMessage = areFieldsEmpty()
+                areFieldsFilled = inputErrorMessage.isEmpty()
+            },
+            placeholder = { BodyMediumMedium(value = "Full Name") },
+            singleLine = true,
+            shape = componentShape.large,
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Color.Transparent,
+                unfocusedBorderColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent,
+                errorContainerColor = WarningColor,
+            ),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(componentShape.large)
+                .border(0.dp, Color.Transparent)
+                .background(PrimaryGreenLight)
+        )
+        SmallSpacer
+        OutlinedTextField(
+            value = officeRole,
+            onValueChange = {
+                officeRole = it
+                inputErrorMessage = areFieldsEmpty()
+                areFieldsFilled = inputErrorMessage.isEmpty()
+            },
+            placeholder = { BodyMediumMedium(value = "Office Role") },
+            singleLine = true,
+            shape = componentShape.large,
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Color.Transparent,
+                unfocusedBorderColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent,
+                errorContainerColor = WarningColor,
+            ),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(componentShape.large)
+                .border(0.dp, Color.Transparent)
+                .background(PrimaryGreenLight)
+        )
+        SmallSpacer
+        OutlinedTextField(
+            value = companyEmail,
+            onValueChange = {
+                companyEmail = it
+                inputErrorMessage = areFieldsEmpty()
+                areFieldsFilled = inputErrorMessage.isEmpty()
+            },
+            placeholder = { BodyMediumMedium(value = "Company's Email Address") },
+            singleLine = true,
+            shape = componentShape.large,
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Color.Transparent,
+                unfocusedBorderColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent,
+                errorContainerColor = WarningColor,
+            ),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(componentShape.large)
+                .border(0.dp, Color.Transparent)
+                .background(PrimaryGreenLight)
+        )
+        SmallSpacer
+        OutlinedTextField(
+            value = companyName,
+            onValueChange = {
+                companyName = it
+                inputErrorMessage = areFieldsEmpty()
+                areFieldsFilled = inputErrorMessage.isEmpty()
+            },
+            placeholder = { BodyMediumMedium(value = "Company's Name") },
+            singleLine = true,
+            shape = componentShape.large,
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Color.Transparent,
+                unfocusedBorderColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent,
+                errorContainerColor = WarningColor,
+            ),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(componentShape.large)
+                .border(0.dp, Color.Transparent)
+                .background(PrimaryGreenLight)
+        )
+        SmallSpacer
+        OutlinedTextField(
+            value = password,
+            onValueChange = {
+                password = it
+                inputErrorMessage = areFieldsEmpty()
+                areFieldsFilled = inputErrorMessage.isEmpty() && confirmPassword.isNotEmpty() // Validate only when confirmPassword is not empty
+                errorMessage = if (confirmPassword.isNotEmpty()) checkPasswords(it, confirmPassword) else ""
+            },
+            placeholder = { BodyMediumMedium(value = "Password") },
+            singleLine = true,
+            trailingIcon = {
+                IconButton(onClick = { passwordVisibility = !passwordVisibility })
+                {
+                    Image(
+                        painter = icon,
+                        contentDescription = "Visibility")
+                }
+            },
+            visualTransformation = if (passwordVisibility) VisualTransformation.None
+            else
+                PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password
+            ),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Color.Transparent,
+                unfocusedBorderColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent,
+                errorContainerColor = WarningColor,
+                ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(componentShape.large)
+                .border(0.dp, Color.Transparent)
+                .background(PrimaryGreenLight)
+        )
+        SmallSpacer
+        OutlinedTextField(
+            value = confirmPassword,
+            onValueChange = {
+                confirmPassword = it
+                inputErrorMessage = areFieldsEmpty()
+                areFieldsFilled = inputErrorMessage.isEmpty() && password.isNotEmpty() // Validate only when password is not empty
+                errorMessage = if (password.isNotEmpty()) checkPasswords(password, it) else ""
+            },
+            placeholder= { BodyMediumMedium(value = "Confirm Password") },
+            singleLine = true,
+            trailingIcon = {
+                IconButton(onClick = { passwordVisibility = !passwordVisibility })
+                {
+                    Image(
+                        painter = icon,
+                        contentDescription = "Visibility")
+                }
+            },
+            visualTransformation = if (passwordVisibility) VisualTransformation.None
+            else
+                PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password
+            ),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Color.Transparent,
+                unfocusedBorderColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent,
+                errorContainerColor = WarningColor,
+                ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(componentShape.large)
+                .border(0.dp, Color.Transparent)
+                .background(PrimaryGreenLight)
+        )
+        if (errorMessage.isNotEmpty()) {
+            Text(
+                text = errorMessage,
+                color = WarningColor,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+        }
+        if (inputErrorMessage.isNotEmpty()) {
+            Text(
+                text = inputErrorMessage,
+                color = Color.Red,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+        }
+        LargeSpacer
+        Button(
+            onClick = {},
+            enabled = areFieldsFilled,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = PrimaryHoverNormal,
+                contentColor = Color.White,
+                disabledContainerColor = TransparentColor,
+                disabledContentColor = Color.White
+
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            BodyLargeRegular(value = "Sign Up")
+        }
+        MediumSpacer
+        OldUser()
+    }
+}

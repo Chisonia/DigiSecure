@@ -1,9 +1,14 @@
 package com.techdetect.digisecure.app_components
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
@@ -12,9 +17,13 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.techdetect.digisecure.R
+import com.techdetect.digisecure.ui.theme.DefaultColor
+import com.techdetect.digisecure.ui.theme.PrimaryHoverLight
+import com.techdetect.digisecure.ui.theme.TextColor
 
 @Composable
 fun HeadingOne(value: String){
@@ -26,7 +35,6 @@ fun HeadingOne(value: String){
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 40.sp,
-            fontStyle = FontStyle.Normal
         ),
         color = Color(0xFF2C2A2A),
     )
@@ -43,7 +51,6 @@ fun HeadingTwo(value: String){
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 32.sp,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -52,14 +59,10 @@ fun HeadingTwo(value: String){
 fun HeadingThree(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 140.dp),
-        color = Color(0xFF2C2A2A),
+        color = PrimaryHoverLight,
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 24.sp,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -76,7 +79,6 @@ fun HeadingFour(value: String){
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 18.sp,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -96,10 +98,9 @@ fun BodyExtraLargeSemiBold(value: String){
             .fillMaxSize()
             .heightIn(min = 140.dp),
         color = Color(0xFF2C2A2A),
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 24.sp,
-            fontWeight = FontWeight.SemiBold,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -112,10 +113,9 @@ fun BodyExtraLargeMedium(value: String){
             .fillMaxSize()
             .heightIn(min = 140.dp),
         color = Color(0xFF2C2A2A),
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.Medium,
         style = TextStyle(
             fontSize = 24.sp,
-            fontWeight = FontWeight.Medium,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -128,10 +128,9 @@ fun BodyExtraLargeRegular(value: String){
             .fillMaxSize()
             .heightIn(min = 140.dp),
         color = Color(0xFF2C2A2A),
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.Normal,
         style = TextStyle(
             fontSize = 24.sp,
-            fontWeight = FontWeight.Normal,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -141,14 +140,10 @@ fun BodyExtraLargeRegular(value: String){
 fun BodyLargeSemiBold(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 140.dp),
-        color = Color(0xFF2C2A2A),
+        color = TextColor,
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 20.sp,
-            fontWeight = FontWeight.SemiBold,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -161,10 +156,9 @@ fun BodyLargeMedium(value: String){
             .fillMaxSize()
             .heightIn(min = 140.dp),
         color = Color(0xFF2C2A2A),
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.Medium,
         style = TextStyle(
             fontSize = 20.sp,
-            fontWeight = FontWeight.Medium,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -173,14 +167,10 @@ fun BodyLargeMedium(value: String){
 fun BodyLargeRegular(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 140.dp),
-        color = Color(0xFF2C2A2A),
+        color = Color.White,
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.Normal,
         style = TextStyle(
             fontSize = 20.sp,
-            fontWeight = FontWeight.Normal,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -190,14 +180,10 @@ fun BodyLargeRegular(value: String){
 fun BodyMediumSemiBold(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 140.dp),
         color = Color(0xFF2C2A2A),
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 18.sp,
-            fontWeight = FontWeight.SemiBold,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -207,13 +193,11 @@ fun BodyMediumMedium(value: String){
     Text(
         text = value,
         modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 140.dp),
-        color = Color(0xFF2C2A2A),
+            .fillMaxWidth(),
+        color = DefaultColor,
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.Medium,
         style = TextStyle(
             fontSize = 18.sp,
-            fontWeight = FontWeight.Medium,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -226,10 +210,9 @@ fun BodyMediumRegular(value: String){
             .fillMaxSize()
             .heightIn(min = 140.dp),
         color = Color(0xFF2C2A2A),
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.Normal,
         style = TextStyle(
             fontSize = 18.sp,
-            fontWeight = FontWeight.Normal,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -243,10 +226,9 @@ fun BodySmallSemiBold(value: String){
             .fillMaxSize()
             .heightIn(min = 140.dp),
         color = Color(0xFF2C2A2A),
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 16.sp,
-            fontWeight = FontWeight.SemiBold,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -255,14 +237,10 @@ fun BodySmallSemiBold(value: String){
 fun BodySmallMedium(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 140.dp),
-        color = Color(0xFF2C2A2A),
+        color = PrimaryHoverLight,
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.Medium,
         style = TextStyle(
             fontSize = 16.sp,
-            fontWeight = FontWeight.Medium,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -271,14 +249,10 @@ fun BodySmallMedium(value: String){
 fun BodySmallRegular(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 140.dp),
         color = Color(0xFF2C2A2A),
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.Normal,
         style = TextStyle(
             fontSize = 16.sp,
-            fontWeight = FontWeight.Normal,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -288,14 +262,10 @@ fun BodySmallRegular(value: String){
 fun CaptionOne(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 160.dp),
-        color = Color(0xFF2C2A2A),
+        color = PrimaryHoverLight,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 14.sp,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -304,14 +274,10 @@ fun CaptionOne(value: String){
 fun CaptionTwo(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 160.dp),
-        color = Color(0xFF2C2A2A),
+        color = PrimaryHoverLight,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 12.sp,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -328,7 +294,6 @@ fun DisplayOne(value: String){
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.Bold,
         style = TextStyle(
             fontSize = 40.sp,
-            fontStyle = FontStyle.Normal
         )
     )
 }
@@ -337,14 +302,10 @@ fun DisplayOne(value: String){
 fun DisplayTwo(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 120.dp),
         color = Color(0xFF2C2A2A),
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 32.sp,
-            fontStyle = FontStyle.Normal
         )
     )
 }

@@ -1,5 +1,8 @@
 [versions]
 agp = "8.3.1"
+androidxNavigationNavigation_3 = "2.8.0-alpha06"
+comGoogleFirebaseFirebaseBom5 = "32.8.0"
+firebaseBom = "32.8.0"
 kotlin = "1.9.0"
 coreKtx = "1.10.1"
 junit = "4.13.2"
@@ -8,9 +11,26 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.6.1"
 activityCompose = "1.7.0"
 composeBom = "2023.08.00"
+material = "1.11.0"
+material3Android = "1.2.1"
+constraintlayoutCompose = "1.0.1"
+composeMaterial3 = "1.0.0-alpha20"
+composeMaterialCore = "1.3.1"
+firebaseCommonKtx = "20.4.3"
+firebaseAuthKtx = "22.3.1"
+googleServices = "4.4.1"
+firebaseAuth = "22.3.1"
+navigationCompose = "2.7.7"
+navigationComposeVersion = "2.4.0-alpha10"
+navigationRuntimeKtx = "2.7.7"
+navigationCommon = "2.7.7"
+foundationAndroid = "1.6.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-navigation-compose-v240alpha10 = { module = "androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
+androidx-navigation-navigation-_5 = { module = "androidx.navigation:navigation-*", version.ref = "androidxNavigationNavigation_3" }
+com-google-firebase-firebase-bom6 = { module = "com.google.firebase:firebase-bom", version.ref = "comGoogleFirebaseFirebaseBom5" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -24,6 +44,19 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
+androidx-constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintlayoutCompose" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+androidx-compose-material3 = { group = "androidx.wear.compose", name = "compose-material3", version.ref = "composeMaterial3" }
+androidx-compose-material-core = { group = "androidx.wear.compose", name = "compose-material-core", version.ref = "composeMaterialCore" }
+firebase-common-ktx = { group = "com.google.firebase", name = "firebase-common-ktx", version.ref = "firebaseCommonKtx" }
+firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
+google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
+androidx-navigation-common = { group = "androidx.navigation", name = "navigation-common", version.ref = "navigationCommon" }
+androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundationAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
