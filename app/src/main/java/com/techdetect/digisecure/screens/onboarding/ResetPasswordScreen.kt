@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.IconButton
@@ -62,6 +64,10 @@ fun ResetPasswordScreen(navController: NavHostController) {
     else
         painterResource(id = R.drawable.visibilityoff)
 
+    fun checkPasswordsMatch(password: String, confirmPassword: String): Boolean {
+        return password == confirmPassword
+    }
+
     fun areFieldsEmpty(): String {
         return when {
             password.isEmpty() -> "Password is required"
@@ -101,7 +107,7 @@ fun ResetPasswordScreen(navController: NavHostController) {
                 {
                     Image(
                         painter = icon,
-                        contentDescription = "Visibility")
+                        contentDescription = "Visibility", modifier = Modifier.size(24.dp))
                 }
             },
             visualTransformation = if (passwordVisibilty) VisualTransformation.None
@@ -130,11 +136,7 @@ fun ResetPasswordScreen(navController: NavHostController) {
                 confirmPassword = it
                 inputErrorMessage = areFieldsEmpty()
                 areFieldsFilled = inputErrorMessage.isEmpty()
-                if (password.isNotEmpty()) {
-                    errorMessage = checkPasswords(password, it)
-                } else {
-                    errorMessage = ""
-                }
+                errorMessage = if (!checkPasswordsMatch(password, it)) "Passwords do not match" else ""
             },
             shape = componentShape.large,
             placeholder = { BodyMediumMedium(value = "Confirm Password") },
@@ -144,7 +146,7 @@ fun ResetPasswordScreen(navController: NavHostController) {
                 {
                     Image(
                         painter = icon,
-                        contentDescription = "Visibility")
+                        contentDescription = "Visibility", modifier = Modifier.size(24.dp))
                 }
             },
             visualTransformation = if (passwordVisibilty) VisualTransformation.None

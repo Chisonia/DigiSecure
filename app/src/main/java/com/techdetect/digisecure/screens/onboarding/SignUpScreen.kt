@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -18,7 +19,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -47,7 +47,6 @@ import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.LargeSpacer
 import com.techdetect.digisecure.app_components.LargestSpacer
 import com.techdetect.digisecure.app_components.MediumSpacer
-import com.techdetect.digisecure.app_components.OldUser
 import com.techdetect.digisecure.app_components.SmallSpacer
 import com.techdetect.digisecure.app_components.componentShape
 import com.techdetect.digisecure.ui.theme.PrimaryGreenLight
@@ -65,13 +64,12 @@ fun SignUpScreen(navController: NavHostController) {
     var areFieldsFilled by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf("") }
     var inputErrorMessage by remember { mutableStateOf("") }
-    var passwordVisibilty by remember { mutableStateOf(false) }
+    var passwordVisibility by remember { mutableStateOf(false) }
 
-    val icon = if (passwordVisibilty)
+    val icon = if (passwordVisibility)
         painterResource(id = R.drawable.visibility)
     else
         painterResource(id = R.drawable.visibilityoff)
-
 
     fun areFieldsEmpty(): String {
         return when {
@@ -83,39 +81,48 @@ fun SignUpScreen(navController: NavHostController) {
         }
     }
 
+    fun isPasswordValid(password: String): Boolean {
+        val passwordRegex = Regex("^(?=.*[A-Z])(?=.*[0-9])(?=.*[ ,{}[<>():+]!@#$%^&*-]).{10,}$")
+        return passwordRegex.matches(password)
+    }
+
+    fun checkPasswordsMatch(password: String, confirmPassword: String): Boolean {
+        return password == confirmPassword
+    }
+
     Image(
         painter = painterResource(id = R.drawable.onboarding_background),
         contentDescription = null,
         contentScale = ContentScale.Crop,
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         alpha = 1F
-    )
-    TopAppBar(
-        title = {},
-        navigationIcon = {
-            IconButton(
-                onClick = {navController.navigate(Routes.DecisionRoute)
-                }
-            )
-            {
-                Icon(
-                    painter = painterResource(id = R.drawable.back_icon),
-                    contentDescription = "Back Button"
-                )
-            }
-        }
     )
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(top = 94.dp, start = 16.dp, end = 16.dp)
+            .padding(top = 80.dp, start = 16.dp, end = 16.dp)
             .fillMaxSize()
     ) {
+        Row(horizontalArrangement = Arrangement.Start, modifier = Modifier.fillMaxWidth()) {
+            IconButton(
+                onClick = {
+                    navController.navigate(Routes.DecisionRoute)
+                }
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.back_icon),
+                    contentDescription = "Back Button",
+                    modifier = Modifier.size(24.dp),
+                    tint = Color.Cyan
+                )
+            }
+        }
         HeadingThree(value = "Create New Account")
         SmallSpacer
         BodySmallMedium(value = "Please fill in the form to continue")
         LargeSpacer
+
+        // Full Name TextField
         OutlinedTextField(
             value = userName,
             onValueChange = {
@@ -127,12 +134,11 @@ fun SignUpScreen(navController: NavHostController) {
             singleLine = true,
             shape = componentShape.large,
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = Color.Transparent,
-                unfocusedBorderColor = Color.Transparent,
+                focusedBorderColor = PrimaryGreenLight,
+                unfocusedBorderColor = PrimaryGreenLight,
                 disabledContainerColor = Color.Transparent,
                 errorContainerColor = WarningColor,
             ),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(componentShape.large)
@@ -140,6 +146,8 @@ fun SignUpScreen(navController: NavHostController) {
                 .background(PrimaryGreenLight)
         )
         SmallSpacer
+
+        // Email TextField
         OutlinedTextField(
             value = userEmail,
             onValueChange = {
@@ -151,12 +159,11 @@ fun SignUpScreen(navController: NavHostController) {
             singleLine = true,
             shape = componentShape.large,
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = Color.Transparent,
-                unfocusedBorderColor = Color.Transparent,
+                focusedBorderColor = PrimaryGreenLight,
+                unfocusedBorderColor = PrimaryGreenLight,
                 disabledContainerColor = Color.Transparent,
                 errorContainerColor = WarningColor,
             ),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(componentShape.large)
@@ -165,33 +172,28 @@ fun SignUpScreen(navController: NavHostController) {
         )
         SmallSpacer
 
+        // Password TextField
         OutlinedTextField(
             value = password,
             onValueChange = {
                 password = it
                 inputErrorMessage = areFieldsEmpty()
                 areFieldsFilled = inputErrorMessage.isEmpty()
+                errorMessage = if (!isPasswordValid(it)) "Password must have at least 10 characters, one uppercase letter, one number, and one symbol" else ""
             },
             placeholder = { BodyMediumMedium(value = "Password") },
             singleLine = true,
             trailingIcon = {
-                IconButton(onClick = { passwordVisibilty = !passwordVisibilty })
-                {
-                    Image(
-                        painter = icon,
-                        contentDescription = "Visibility")
+                IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
+                    Image(painter = icon, contentDescription = "Visibility", modifier = Modifier.size(24.dp))
                 }
             },
-            visualTransformation = if (passwordVisibilty) VisualTransformation.None
-            else
-                PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Password
-            ),
+            visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             shape = componentShape.large,
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = Color.Transparent,
-                unfocusedBorderColor = Color.Transparent,
+                focusedBorderColor = PrimaryGreenLight,
+                unfocusedBorderColor = PrimaryGreenLight,
                 disabledContainerColor = Color.Transparent,
                 errorContainerColor = WarningColor,
             ),
@@ -202,38 +204,29 @@ fun SignUpScreen(navController: NavHostController) {
                 .background(PrimaryGreenLight)
         )
         SmallSpacer
+
+        // Confirm Password TextField
         OutlinedTextField(
             value = confirmPassword,
             onValueChange = {
                 confirmPassword = it
                 inputErrorMessage = areFieldsEmpty()
                 areFieldsFilled = inputErrorMessage.isEmpty()
-                if (password.isNotEmpty()) {
-                    errorMessage = checkPasswords(password, it)
-                } else {
-                    errorMessage = ""
-                }
+                errorMessage = if (!checkPasswordsMatch(password, it)) "Passwords do not match" else ""
             },
-            shape = componentShape.large,
             placeholder = { BodyMediumMedium(value = "Confirm Password") },
             singleLine = true,
             trailingIcon = {
-                IconButton(onClick = { passwordVisibilty = !passwordVisibilty })
-                {
-                    Image(
-                        painter = icon,
-                        contentDescription = "Visibility")
+                IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
+                    Image(painter = icon, contentDescription = "Visibility", modifier = Modifier.size(24.dp))
                 }
             },
-            visualTransformation = if (passwordVisibilty) VisualTransformation.None
-            else
-                PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Password
-            ),
+            visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            shape = componentShape.large,
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = Color.Transparent,
-                unfocusedBorderColor = Color.Transparent,
+                focusedBorderColor = PrimaryGreenLight,
+                unfocusedBorderColor = PrimaryGreenLight,
                 disabledContainerColor = Color.Transparent,
                 errorContainerColor = WarningColor,
             ),
@@ -244,6 +237,7 @@ fun SignUpScreen(navController: NavHostController) {
                 .background(PrimaryGreenLight)
         )
 
+        // Error Messages
         if (errorMessage.isNotEmpty()) {
             BodySmallRegular(value = errorMessage)
         }
@@ -251,9 +245,12 @@ fun SignUpScreen(navController: NavHostController) {
         if (inputErrorMessage.isNotEmpty()) {
             BodySmallRegular(value = inputErrorMessage)
         }
+
         LargestSpacer
+
+        // Sign Up Button
         Button(
-            onClick = {navController.navigate(Routes.VerificationRoute)},
+            onClick = { navController.navigate(Routes.VerificationRoute) },
             enabled = areFieldsFilled,
             colors = ButtonDefaults.buttonColors(
                 containerColor = PrimaryHoverNormal,
@@ -265,7 +262,10 @@ fun SignUpScreen(navController: NavHostController) {
         ) {
             BodyLargeRegular(value = "Sign Up")
         }
+
         MediumSpacer
+
+        // Sign In Link
         Row(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
@@ -273,18 +273,10 @@ fun SignUpScreen(navController: NavHostController) {
         ) {
             CaptionTwo(value = "Have An Account?")
             TextButton(
-                onClick = {navController.navigate(Routes.SignInRoute)},
+                onClick = { navController.navigate(Routes.SignInRoute) },
             ) {
                 CaptionOne(value = "Sign In")
             }
         }
-    }
-}
-
-fun checkPasswords(password: String, confirmPassword: String): String {
-    return if (password != confirmPassword) {
-        "Passwords do not match"
-    } else {
-        ""
     }
 }

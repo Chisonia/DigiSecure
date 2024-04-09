@@ -23,6 +23,7 @@ import com.techdetect.digisecure.app_components.BodyLargeRegularLight
 import com.techdetect.digisecure.app_components.BodyMediumMediumLight
 import com.techdetect.digisecure.app_components.LargeSpacer
 import com.techdetect.digisecure.app_components.MediumSpacer
+import com.techdetect.digisecure.app_components.SmallSpacer
 import com.techdetect.digisecure.ui.theme.PrimaryHoverLight
 
 @Composable
@@ -48,6 +49,7 @@ fun DecisionScreen(navController: NavHostController){
         BodyMediumMediumLight(
             value = "Select your method of Sign in/Sign Up"
         )
+        SmallSpacer
         Button(
             onClick = {navController.navigate(Routes.SignUpRoute)},
             colors = ButtonDefaults.buttonColors(
