@@ -1,6 +1,7 @@
 package com.techdetect.digisecure
 
 object Routes {
+
     const val SplashRoute = "splash_screen_route"
     const val SignInRoute = "sign_in_screen_route"
     const val SignUpRoute = "sign_up_screen_route"

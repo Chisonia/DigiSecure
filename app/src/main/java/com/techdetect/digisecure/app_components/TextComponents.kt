@@ -1,22 +1,26 @@
 package com.techdetect.digisecure.app_components
 
+import android.graphics.Paint.Align
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.techdetect.digisecure.R
 import com.techdetect.digisecure.ui.theme.DefaultColor
 import com.techdetect.digisecure.ui.theme.PrimaryGreenNormal
 import com.techdetect.digisecure.ui.theme.PrimaryHoverLight
+import com.techdetect.digisecure.ui.theme.SecondaryBlue2Dark
 import com.techdetect.digisecure.ui.theme.TextColor
 import com.techdetect.digisecure.ui.theme.WarningColor
 
@@ -24,9 +28,6 @@ import com.techdetect.digisecure.ui.theme.WarningColor
 fun HeadingOne(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 120.dp),
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 40.sp,
@@ -39,9 +40,6 @@ fun HeadingOne(value: String){
 fun HeadingTwo(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 120.dp),
         color = TextColor,
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
@@ -67,10 +65,7 @@ fun HeadingThree(value: String){
 fun HeadingFour(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 160.dp),
-        color = TextColor,
+        color = PrimaryHoverLight,
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 18.sp,
@@ -135,7 +130,8 @@ fun BodyExtraLargeRegular(value: String){
 fun BodyLargeSemiBold(value: String){
     Text(
         text = value,
-        color = TextColor,
+        color = SecondaryBlue2Dark,
+        textAlign = TextAlign.Center,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 20.sp,
@@ -241,9 +237,6 @@ fun BodyMediumMediumLight(value: String){
 fun BodyMediumRegular(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 140.dp),
         color = TextColor,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.Normal,
         style = TextStyle(
@@ -257,9 +250,6 @@ fun BodyMediumRegular(value: String){
 fun BodySmallSemiBold(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 140.dp),
         color = TextColor,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
@@ -329,14 +319,34 @@ fun CaptionTwo(value: String){
     )
 }
 
+@Composable
+fun CaptionOneBlack(value: String){
+    Text(
+        text = value,
+        color = TextColor,
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold,
+        style = TextStyle(
+            fontSize = 14.sp,
+        )
+    )
+}
+
+@Composable
+fun CaptionTwoBlack(value: String){
+    Text(
+        text = value,
+        color = TextColor,
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold,
+        style = TextStyle(
+            fontSize = 12.sp,
+        )
+    )
+}
 
 @Composable
 fun DisplayOne(value: String){
     Text(
         text = value,
-        modifier = Modifier
-            .fillMaxSize()
-            .heightIn(min = 120.dp),
         color = TextColor,
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.Bold,
         style = TextStyle(

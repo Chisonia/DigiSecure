@@ -33,6 +33,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -71,9 +72,9 @@ fun SignUpCompScreen(navController: NavHostController, authViewModel: AuthViewMo
     var passwordVisibility by remember { mutableStateOf(false) }
 
     val icon = if (passwordVisibility)
-        painterResource(id = R.drawable.visibility)
-    else
         painterResource(id = R.drawable.visibilityoff)
+    else
+        painterResource(id = R.drawable.visibility)
 
     fun checkPasswordsMatch(password: String, confirmPassword: String): Boolean {
         return password == confirmPassword
@@ -306,11 +307,12 @@ fun SignUpCompScreen(navController: NavHostController, authViewModel: AuthViewMo
 
         // Sign Up Button
         Button(
-            onClick = { authViewModel.registerCompUser(
+            onClick = { authViewModel.registerUser(
                 username = userName,
                 password = password,
                 email = companyEmail,
                 navController = navController ,
+                authErrorMessage = MutableLiveData()
             )},
             enabled = areFieldsFilled,
             colors = ButtonDefaults.buttonColors(

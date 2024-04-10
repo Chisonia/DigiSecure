@@ -59,6 +59,7 @@ dependencies {
     implementation("com.google.ai.client.generativeai:generativeai:0.1.2")
     implementation("androidx.compose.material3:material3-android:1.2.0-rc01")
     implementation("androidx.compose.material3:material3-window-size-class:1.1.2")
+    implementation(libs.firebase.firestore.ktx)
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")

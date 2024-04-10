@@ -63,9 +63,9 @@ fun ResetPasswordScreen(navController: NavHostController, authViewModel: AuthVie
     var passwordVisibilty by remember { mutableStateOf(false) }
 
     val icon = if (passwordVisibilty)
-        painterResource(id = R.drawable.visibility)
-    else
         painterResource(id = R.drawable.visibilityoff)
+    else
+        painterResource(id = R.drawable.visibility)
 
     fun checkPasswordsMatch(password: String, confirmPassword: String): Boolean {
         return password == confirmPassword

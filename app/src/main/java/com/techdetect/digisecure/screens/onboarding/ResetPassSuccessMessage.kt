@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,6 +14,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,7 +30,10 @@ import com.techdetect.digisecure.R
 import com.techdetect.digisecure.Routes
 import com.techdetect.digisecure.app_components.BodyLargeRegular
 import com.techdetect.digisecure.app_components.BodyLargeSemiBold
+import com.techdetect.digisecure.app_components.CaptionOneBlack
+import com.techdetect.digisecure.app_components.CaptionTwoBlack
 import com.techdetect.digisecure.app_components.MediumSpacer
+import com.techdetect.digisecure.app_components.SmallSpacer
 import com.techdetect.digisecure.app_components.poppinsFontFamily
 import com.techdetect.digisecure.ui.theme.PrimaryHoverLight
 import com.techdetect.digisecure.ui.theme.PrimaryHoverNormal
@@ -60,9 +65,9 @@ fun ResetSuccessMessage(navController: NavHostController) {
                     modifier = Modifier.size(120.dp) // Adjust image size here
                 )
                 MediumSpacer
-                BodyLargeSemiBold(value = "Password successfully reset!")
+                BodyLargeSemiBold(value = "Check your email for password reset link")
                 Text(
-                    text = "You can now access your account with this new password. ",
+                    text = "Sign In with your new assword. ",
                     color = TextColor,
                     textAlign = TextAlign.Center,
                     fontFamily = poppinsFontFamily,
@@ -82,6 +87,19 @@ fun ResetSuccessMessage(navController: NavHostController) {
                         .fillMaxWidth()
                 ) {
                     BodyLargeRegular(value = "Sign In")
+                }
+                SmallSpacer
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    CaptionTwoBlack(value = "Didn't receive password reset link?")
+                    TextButton(
+                        onClick = { navController.navigate(Routes.SignInRoute) },
+                    ) {
+                        CaptionOneBlack(value = "Resend")
+                    }
                 }
             }
         }

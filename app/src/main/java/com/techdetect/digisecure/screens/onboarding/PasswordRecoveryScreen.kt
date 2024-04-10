@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -44,6 +45,7 @@ import com.techdetect.digisecure.app_components.ErrorBodySmallRegular
 import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.LargeSpacer
 import com.techdetect.digisecure.app_components.LargestSpacer
+import com.techdetect.digisecure.app_components.MediumSpacer
 import com.techdetect.digisecure.app_components.SmallSpacer
 import com.techdetect.digisecure.app_components.componentShape
 import com.techdetect.digisecure.models.AuthViewModel
@@ -77,7 +79,7 @@ fun PasswordRecoveryScreen(navController: NavHostController, authViewModel: Auth
     Column (
         horizontalAlignment = Alignment.Start,
         modifier = Modifier
-            .padding(top = 94.dp, start = 16.dp, end = 16.dp)
+            .padding(top = 64.dp, start = 16.dp, end = 16.dp)
             .fillMaxSize()
     ){
         Row(horizontalArrangement = Arrangement.Start, modifier = Modifier.fillMaxWidth()) {
@@ -89,10 +91,13 @@ fun PasswordRecoveryScreen(navController: NavHostController, authViewModel: Auth
             {
                 Icon(
                     painter = painterResource(id = R.drawable.back_icon),
-                    contentDescription = "Back Button"
+                    contentDescription = "Back Button",
+                    modifier = Modifier.size(24.dp),
+                    tint = Color.Cyan
                 )
             }
         }
+        MediumSpacer
         HeadingThree(value = "Password Recovery")
         SmallSpacer
         BodySmallMedium(value = "Enter the email address you used for registration.")

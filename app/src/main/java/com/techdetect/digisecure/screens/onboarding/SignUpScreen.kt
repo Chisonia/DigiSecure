@@ -35,6 +35,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.google.firebase.auth.FirebaseAuth
@@ -72,9 +73,9 @@ fun SignUpScreen(navController: NavHostController, authViewModel: AuthViewModel)
     var passwordVisibility by remember { mutableStateOf(false) }
 
     val icon = if (passwordVisibility)
-        painterResource(id = R.drawable.visibility)
-    else
         painterResource(id = R.drawable.visibilityoff)
+    else
+        painterResource(id = R.drawable.visibility)
 
     fun areFieldsEmpty(): String {
         return when {
@@ -261,6 +262,7 @@ fun SignUpScreen(navController: NavHostController, authViewModel: AuthViewModel)
                 email = userEmail,
                 password = password,
                 navController = navController,
+                authErrorMessage = MutableLiveData()
             )
                       },
             enabled = areFieldsFilled,

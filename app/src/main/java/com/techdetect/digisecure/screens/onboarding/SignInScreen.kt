@@ -64,9 +64,9 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
     var passwordVisibilty by remember { mutableStateOf(false) }
 
     var icon = if (passwordVisibilty)
-        painterResource(id = R.drawable.visibility)
-    else
         painterResource(id = R.drawable.visibilityoff)
+    else
+        painterResource(id = R.drawable.visibility)
 
 
     fun areFieldsEmpty(): String {
