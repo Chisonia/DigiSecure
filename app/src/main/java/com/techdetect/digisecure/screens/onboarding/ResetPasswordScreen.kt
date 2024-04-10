@@ -35,23 +35,26 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.techdetect.digisecure.R
+import com.techdetect.digisecure.Routes
 import com.techdetect.digisecure.app_components.BodyLargeRegular
 import com.techdetect.digisecure.app_components.BodyMediumMedium
 import com.techdetect.digisecure.app_components.BodySmallRegular
 import com.techdetect.digisecure.app_components.CaptionTwo
+import com.techdetect.digisecure.app_components.ErrorBodySmallRegular
 import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.LargeSpacer
 import com.techdetect.digisecure.app_components.LargestSpacer
 import com.techdetect.digisecure.app_components.MediumSpacer
 import com.techdetect.digisecure.app_components.SmallSpacer
 import com.techdetect.digisecure.app_components.componentShape
+import com.techdetect.digisecure.models.AuthViewModel
 import com.techdetect.digisecure.ui.theme.PrimaryGreenLight
 import com.techdetect.digisecure.ui.theme.PrimaryHoverNormal
 import com.techdetect.digisecure.ui.theme.TransparentColor
 import com.techdetect.digisecure.ui.theme.WarningColor
 
 @Composable
-fun ResetPasswordScreen(navController: NavHostController) {
+fun ResetPasswordScreen(navController: NavHostController, authViewModel: AuthViewModel) {
     var inputErrorMessage by remember { mutableStateOf("") }
     var areFieldsFilled by remember { mutableStateOf(false) }
     var password by remember { mutableStateOf("") }
@@ -169,11 +172,11 @@ fun ResetPasswordScreen(navController: NavHostController) {
         )
 
         if (errorMessage.isNotEmpty()) {
-            BodySmallRegular(value = errorMessage)
+            ErrorBodySmallRegular(value = errorMessage)
         }
 
         if (inputErrorMessage.isNotEmpty()) {
-            BodySmallRegular(value = inputErrorMessage)
+            ErrorBodySmallRegular(value = inputErrorMessage)
         }
         MediumSpacer
         if (errorMessage.isNotEmpty()) {
@@ -183,17 +186,9 @@ fun ResetPasswordScreen(navController: NavHostController) {
                 modifier = Modifier.padding(bottom = 8.dp)
             )
         }
-
-        if (inputErrorMessage.isNotEmpty()) {
-            Text(
-                text = inputErrorMessage,
-                color = Color.Red,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-        }
         LargestSpacer
         Button(
-            onClick = {},
+            onClick = {navController.navigate(Routes.ResetSuccessRoute)},
             enabled = areFieldsFilled,
             shape = componentShape.large,
             colors = ButtonDefaults.buttonColors(
@@ -204,7 +199,7 @@ fun ResetPasswordScreen(navController: NavHostController) {
             ),
             modifier = Modifier.fillMaxWidth()
         ) {
-            BodyLargeRegular(value = "Send Code")
+            BodyLargeRegular(value = "Reset")
         }
     }
 }

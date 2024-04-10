@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -33,17 +34,19 @@ fun VerificationSuccessMessage(navController: NavHostController) {
             modifier = Modifier.fillMaxSize(),
             color = SecondaryBlue1HoverLight
         ) {
-            IconButton(
-                onClick = { navController.navigate(Routes.SignInRoute) },
-                modifier = Modifier
-                    .padding(16.dp)
-                    .align(alignment = Alignment.TopEnd)
-            ) {
-                Icon(
-                    painter = painterResource(id = com.google.android.material.R.drawable.ic_m3_chip_close),
-                    contentDescription = "Close",
-                    tint = PrimaryGreenNormal
-                )
+            Row (verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.End){
+                IconButton(
+                    onClick = { navController.navigate(Routes.SignInRoute) },
+                    modifier = Modifier
+                        .padding(24.dp)
+
+                ) {
+                    Icon(
+                        painter = painterResource(id = com.google.android.material.R.drawable.ic_m3_chip_close),
+                        contentDescription = "Close",
+                        tint = PrimaryGreenNormal
+                    )
+                }
             }
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,

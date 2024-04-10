@@ -1,5 +1,6 @@
 package com.techdetect.digisecure.screens.onboarding
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -34,7 +35,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import com.google.firebase.auth.FirebaseAuth
 import com.techdetect.digisecure.R
 import com.techdetect.digisecure.Routes
 import com.techdetect.digisecure.app_components.BodyLargeRegular
@@ -43,12 +46,14 @@ import com.techdetect.digisecure.app_components.BodySmallMedium
 import com.techdetect.digisecure.app_components.BodySmallRegular
 import com.techdetect.digisecure.app_components.CaptionOne
 import com.techdetect.digisecure.app_components.CaptionTwo
+import com.techdetect.digisecure.app_components.ErrorBodySmallRegular
 import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.LargeSpacer
 import com.techdetect.digisecure.app_components.LargestSpacer
 import com.techdetect.digisecure.app_components.MediumSpacer
 import com.techdetect.digisecure.app_components.SmallSpacer
 import com.techdetect.digisecure.app_components.componentShape
+import com.techdetect.digisecure.models.AuthViewModel
 import com.techdetect.digisecure.ui.theme.PrimaryGreenLight
 import com.techdetect.digisecure.ui.theme.PrimaryHoverNormal
 import com.techdetect.digisecure.ui.theme.TransparentColor
@@ -56,7 +61,7 @@ import com.techdetect.digisecure.ui.theme.WarningColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignUpScreen(navController: NavHostController) {
+fun SignUpScreen(navController: NavHostController, authViewModel: AuthViewModel) {
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
     var userName by remember { mutableStateOf("") }
@@ -117,6 +122,7 @@ fun SignUpScreen(navController: NavHostController) {
                 )
             }
         }
+        MediumSpacer
         HeadingThree(value = "Create New Account")
         SmallSpacer
         BodySmallMedium(value = "Please fill in the form to continue")
@@ -239,18 +245,24 @@ fun SignUpScreen(navController: NavHostController) {
 
         // Error Messages
         if (errorMessage.isNotEmpty()) {
-            BodySmallRegular(value = errorMessage)
+            ErrorBodySmallRegular(value = errorMessage)
         }
 
         if (inputErrorMessage.isNotEmpty()) {
-            BodySmallRegular(value = inputErrorMessage)
+            ErrorBodySmallRegular(value = inputErrorMessage)
         }
 
         LargestSpacer
 
         // Sign Up Button
         Button(
-            onClick = { navController.navigate(Routes.VerificationRoute) },
+            onClick = { authViewModel.registerUser(
+                username = userName,
+                email = userEmail,
+                password = password,
+                navController = navController,
+            )
+                      },
             enabled = areFieldsFilled,
             colors = ButtonDefaults.buttonColors(
                 containerColor = PrimaryHoverNormal,

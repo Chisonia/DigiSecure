@@ -40,11 +40,13 @@ import com.techdetect.digisecure.app_components.BodyLargeRegular
 import com.techdetect.digisecure.app_components.BodyMediumMedium
 import com.techdetect.digisecure.app_components.BodySmallMedium
 import com.techdetect.digisecure.app_components.CaptionTwo
+import com.techdetect.digisecure.app_components.ErrorBodySmallRegular
 import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.LargeSpacer
 import com.techdetect.digisecure.app_components.LargestSpacer
 import com.techdetect.digisecure.app_components.SmallSpacer
 import com.techdetect.digisecure.app_components.componentShape
+import com.techdetect.digisecure.models.AuthViewModel
 import com.techdetect.digisecure.ui.theme.PrimaryGreenLight
 import com.techdetect.digisecure.ui.theme.PrimaryHoverNormal
 import com.techdetect.digisecure.ui.theme.TransparentColor
@@ -52,7 +54,7 @@ import com.techdetect.digisecure.ui.theme.WarningColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordRecoveryScreen(navController: NavHostController) {
+fun PasswordRecoveryScreen(navController: NavHostController, authViewModel: AuthViewModel) {
     var userEmail by remember { mutableStateOf("") }
     var inputErrorMessage by remember { mutableStateOf("") }
     var areFieldsFilled by remember { mutableStateOf(false) }
@@ -64,21 +66,6 @@ fun PasswordRecoveryScreen(navController: NavHostController) {
             else -> ""
         }
     }
-    TopAppBar(
-        title = {},
-        navigationIcon = {
-            IconButton(
-                onClick = {navController.navigate(Routes.SignInRoute)
-                }
-            )
-            {
-                Icon(
-                    painter = painterResource(id = R.drawable.back_icon),
-                    contentDescription = "Back Button"
-                )
-            }
-        }
-    )
     Image(
         painter = painterResource(id = R.drawable.onboarding_background),
         contentDescription = null,
@@ -93,6 +80,19 @@ fun PasswordRecoveryScreen(navController: NavHostController) {
             .padding(top = 94.dp, start = 16.dp, end = 16.dp)
             .fillMaxSize()
     ){
+        Row(horizontalArrangement = Arrangement.Start, modifier = Modifier.fillMaxWidth()) {
+            IconButton(
+                onClick = {
+                    navController.navigate(Routes.SignInRoute)
+                }
+            )
+            {
+                Icon(
+                    painter = painterResource(id = R.drawable.back_icon),
+                    contentDescription = "Back Button"
+                )
+            }
+        }
         HeadingThree(value = "Password Recovery")
         SmallSpacer
         BodySmallMedium(value = "Enter the email address you used for registration.")
@@ -120,32 +120,13 @@ fun PasswordRecoveryScreen(navController: NavHostController) {
                 .border(0.dp, Color.Transparent)
                 .background(PrimaryGreenLight)
         )
-        Row (
-            horizontalArrangement = Arrangement.End,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        ){
-            TextButton(
-                onClick = {},
-                modifier = Modifier
-                    .padding(bottom = 20.dp)
-
-            ) {
-                CaptionTwo(value = "Resend Code")
-
-            }
-        }
 
         if (inputErrorMessage.isNotEmpty()) {
-            Text(
-                text = inputErrorMessage,
-                color = Color.Red,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
+            ErrorBodySmallRegular(value = inputErrorMessage)
         }
         LargestSpacer
         Button(
-            onClick = {},
+            onClick = {authViewModel.resetPassword(email = userEmail, navController = navController)},
             enabled = areFieldsFilled,
             colors = ButtonDefaults.buttonColors(
                 containerColor = PrimaryHoverNormal,
@@ -155,7 +136,7 @@ fun PasswordRecoveryScreen(navController: NavHostController) {
             ),
             modifier = Modifier.fillMaxWidth()
         ) {
-            BodyLargeRegular(value = "Send Code")
+            BodyLargeRegular(value = "Send Reset Link")
         }
     }
 }

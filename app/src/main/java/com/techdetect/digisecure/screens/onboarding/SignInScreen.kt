@@ -47,6 +47,7 @@ import com.techdetect.digisecure.app_components.LargeSpacer
 import com.techdetect.digisecure.app_components.LargestSpacer
 import com.techdetect.digisecure.app_components.SmallSpacer
 import com.techdetect.digisecure.app_components.componentShape
+import com.techdetect.digisecure.models.AuthViewModel
 import com.techdetect.digisecure.ui.theme.PrimaryGreenLight
 import com.techdetect.digisecure.ui.theme.PrimaryHoverNormal
 import com.techdetect.digisecure.ui.theme.TransparentColor
@@ -54,7 +55,7 @@ import com.techdetect.digisecure.ui.theme.WarningColor
 
 
 @Composable
-fun SignInScreen(navController: NavHostController) {
+fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel) {
     var password by remember { mutableStateOf("") }
     var userEmail by remember { mutableStateOf("") }
     var areFieldsFilled by remember { mutableStateOf(false) }
@@ -174,13 +175,16 @@ fun SignInScreen(navController: NavHostController) {
         if (inputErrorMessage.isNotEmpty()) {
             Text(
                 text = errorMessage,
-                color = Color.Red,
+                color = WarningColor,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
         }
         LargeSpacer
         Button(
-            onClick = {},
+            onClick = {authViewModel.signInUser(
+                email = userEmail,
+                password = password
+            )},
             enabled = areFieldsFilled,
             colors = ButtonDefaults.buttonColors(
                 containerColor = PrimaryHoverNormal,
