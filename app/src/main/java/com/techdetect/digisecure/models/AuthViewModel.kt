@@ -19,11 +19,14 @@ import com.techdetect.digisecure.Routes
 class AuthViewModel: ViewModel() {
     var isUserAuthenticated = mutableStateOf(false)
     var errorMessage = mutableStateOf("")
-    fun signInUser(email: String, password: String) {
+    fun signInUser(email: String, password: String, navController: NavController) {
         Firebase.auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     isUserAuthenticated.value = true
+                    navController.navigate(Routes.HomeScreenRoute)
+
+
                 } else {
                     errorMessage.value = task.exception?.message.toString()
                     Log.e("Sign In Not Successful", task.exception.toString())

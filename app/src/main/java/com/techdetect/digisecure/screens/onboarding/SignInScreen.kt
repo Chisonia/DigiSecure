@@ -33,6 +33,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.techdetect.digisecure.R
 import com.techdetect.digisecure.Routes
@@ -181,9 +182,11 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
         }
         LargeSpacer
         Button(
-            onClick = {authViewModel.signInUser(
+            onClick = {
+                authViewModel.signInUser(
                 email = userEmail,
-                password = password
+                password = password,
+                navController = navController
             )},
             enabled = areFieldsFilled,
             colors = ButtonDefaults.buttonColors(

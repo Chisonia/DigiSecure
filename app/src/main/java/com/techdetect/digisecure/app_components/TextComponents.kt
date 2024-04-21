@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import com.techdetect.digisecure.R
 import com.techdetect.digisecure.ui.theme.DefaultColor
 import com.techdetect.digisecure.ui.theme.PrimaryGreenNormal
+import com.techdetect.digisecure.ui.theme.PrimaryHoverDark
 import com.techdetect.digisecure.ui.theme.PrimaryHoverLight
 import com.techdetect.digisecure.ui.theme.SecondaryBlue2Dark
 import com.techdetect.digisecure.ui.theme.TextColor
@@ -40,7 +41,7 @@ fun HeadingOne(value: String){
 fun HeadingTwo(value: String){
     Text(
         text = value,
-        color = TextColor,
+        color = PrimaryHoverDark,
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 32.sp,

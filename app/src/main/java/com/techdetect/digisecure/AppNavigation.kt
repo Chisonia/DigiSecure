@@ -7,6 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.techdetect.digisecure.main_app_screens.AccountScreen
+import com.techdetect.digisecure.main_app_screens.HomeScreen
 import com.techdetect.digisecure.models.AuthViewModel
 import com.techdetect.digisecure.screens.onboarding.DecisionScreen
 import com.techdetect.digisecure.screens.onboarding.PasswordRecoveryScreen
@@ -66,6 +68,12 @@ fun AppNavigation() {
 //        }
         composable(route = Routes.VerificationSuccessRoute) {
             VerificationSuccessMessage(navController)
+        }
+        composable(route = Routes.HomeScreenRoute) {
+            HomeScreen(navController)
+        }
+        composable(route = Routes.AccountScreenRoute) {
+            AccountScreen(navController)
         }
     }
 }
