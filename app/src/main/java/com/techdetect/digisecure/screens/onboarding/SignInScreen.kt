@@ -42,8 +42,11 @@ import com.techdetect.digisecure.app_components.BodyMediumMedium
 import com.techdetect.digisecure.app_components.BodySmallMedium
 import com.techdetect.digisecure.app_components.CaptionOne
 import com.techdetect.digisecure.app_components.CaptionTwo
+import com.techdetect.digisecure.app_components.ErrorBodySmallRegular
 import com.techdetect.digisecure.app_components.ForgotPassword
+import com.techdetect.digisecure.app_components.HeadingOne
 import com.techdetect.digisecure.app_components.HeadingThree
+import com.techdetect.digisecure.app_components.HeadingTwo
 import com.techdetect.digisecure.app_components.LargeSpacer
 import com.techdetect.digisecure.app_components.LargestSpacer
 import com.techdetect.digisecure.app_components.SmallSpacer
@@ -62,9 +65,10 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
     var areFieldsFilled by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf("") }
     var inputErrorMessage by remember { mutableStateOf("") }
-    var passwordVisibilty by remember { mutableStateOf(false) }
+    var passwordVisibility by remember { mutableStateOf(false) }
+    val signInErrorMessage by authViewModel.signInErrorMessage
 
-    var icon = if (passwordVisibilty)
+    val icon = if (passwordVisibility)
         painterResource(id = R.drawable.visibilityoff)
     else
         painterResource(id = R.drawable.visibility)
@@ -77,6 +81,8 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
             else -> ""
         }
     }
+
+    ErrorBodySmallRegular(value = signInErrorMessage)
     Image(
         painter = painterResource(id = R.drawable.onboarding_background),
         contentDescription = null,
@@ -91,7 +97,7 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
             .padding(top = 94.dp, start = 16.dp, end = 16.dp)
             .fillMaxSize()
     ) {
-        HeadingThree(value = "Welcome Back!")
+        HeadingOne(value = "Welcome Back!")
         SmallSpacer
         BodySmallMedium(value = "Please sign into your account")
         LargeSpacer
@@ -132,13 +138,13 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
             placeholder = { BodyMediumMedium(value = "Password") },
             singleLine = true,
             trailingIcon = {
-                           IconButton(onClick = { passwordVisibilty = !passwordVisibilty })
+                           IconButton(onClick = { passwordVisibility = !passwordVisibility })
                            {
                                Image(
                                    painter = icon, contentDescription = "Visibility", modifier = Modifier.size(24.dp))
                            }
             },
-            visualTransformation = if (passwordVisibilty) VisualTransformation.None
+            visualTransformation = if (passwordVisibility) VisualTransformation.None
                     else
                         PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(
@@ -208,7 +214,7 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            CaptionTwo(value = "Don't Have An Account?")
+            CaptionOne(value = "Don't Have An Account?")
             TextButton(
                 onClick = {navController.navigate(Routes.DecisionRoute)}
             ) {
@@ -219,6 +225,31 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
 }
 
 fun validatePassword(password: String): String {
-    // Your password validation logic here
-    return "" // Return error message if validation fails
+    // Validate the password against your criteria
+    val minLength = 8 // Example: Minimum length requirement
+    val containsUpperCase = password.any { it.isUpperCase() } // Example: Check if it contains uppercase letters
+    val containsLowerCase = password.any { it.isLowerCase() } // Example: Check if it contains lowercase letters
+    val containsDigit = password.any { it.isDigit() } // Example: Check if it contains digits
+
+    // Build the error message if any validation fails
+    val errorMessageBuilder = StringBuilder()
+
+    if (password.length < minLength) {
+        errorMessageBuilder.append("Password must be at least $minLength characters long.\n")
+    }
+
+    if (!containsUpperCase) {
+        errorMessageBuilder.append("Password must contain at least one uppercase letter.\n")
+    }
+
+    if (!containsLowerCase) {
+        errorMessageBuilder.append("Password must contain at least one lowercase letter.\n")
+    }
+
+    if (!containsDigit) {
+        errorMessageBuilder.append("Password must contain at least one digit.\n")
+    }
+
+    // Return the error message if there are validation errors, otherwise return an empty string
+    return errorMessageBuilder.toString().trim()
 }

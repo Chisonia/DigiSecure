@@ -29,11 +29,11 @@ import com.techdetect.digisecure.ui.theme.WarningColor
 fun HeadingOne(value: String){
     Text(
         text = value,
+        color = PrimaryHoverLight,
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 40.sp,
-        ),
-        color = TextColor,
+        )
     )
 }
 
@@ -41,7 +41,7 @@ fun HeadingOne(value: String){
 fun HeadingTwo(value: String){
     Text(
         text = value,
-        color = PrimaryHoverDark,
+        color = PrimaryHoverLight,
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 32.sp,
@@ -66,7 +66,7 @@ fun HeadingThree(value: String){
 fun HeadingFour(value: String){
     Text(
         text = value,
-        color = PrimaryHoverLight,
+        color = PrimaryHoverDark,
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 18.sp,
@@ -303,7 +303,7 @@ fun CaptionOne(value: String){
         color = PrimaryHoverLight,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
-            fontSize = 14.sp,
+            fontSize = 16.sp,
         )
     )
 }

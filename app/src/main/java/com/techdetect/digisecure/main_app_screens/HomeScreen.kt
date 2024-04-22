@@ -2,10 +2,10 @@ package com.techdetect.digisecure.main_app_screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.HeadsetMic
@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.techdetect.digisecure.R
 import com.techdetect.digisecure.Routes
@@ -33,9 +34,9 @@ import com.techdetect.digisecure.app_components.BodyLargeRegularLight
 import com.techdetect.digisecure.app_components.BodySmallSemiBold
 import com.techdetect.digisecure.app_components.HeadingFour
 import com.techdetect.digisecure.app_components.HeadingTwo
-import com.techdetect.digisecure.ui.theme.PrimaryGreenNormal
 import com.techdetect.digisecure.ui.theme.PrimaryHoverDark
 import com.techdetect.digisecure.ui.theme.PrimaryHoverLight
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 
@@ -44,7 +45,7 @@ fun HomeScreen(navController: NavController){
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { HeadingTwo("Secure Your Gadgets") },
+                title = { HeadingFour("Secure Your Gadgets") },
                 colors = topAppBarColors(
                     containerColor = PrimaryHoverLight,
                     actionIconContentColor = PrimaryHoverDark
@@ -66,39 +67,40 @@ fun HomeScreen(navController: NavController){
             )
         },
         content = { paddingValues ->
-            Box(
-                modifier = Modifier
-                    .padding(paddingValues),
+            Box (
+                Modifier.padding(paddingValues)
             ){
-                Image(
-                    painter = painterResource(id = R.drawable.home_background),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    alpha = 1F
-                )
-                Button(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = PrimaryHoverLight,
-                        contentColor = Color.White,
-                    ),
-                    modifier = Modifier
-                        .fillMaxWidth()
+                Column(
+                   modifier = Modifier.fillMaxSize()
                 ) {
-                    BodyLargeRegularLight(value = "Register Device")
-                }
-                Button(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = PrimaryHoverLight,
-                        contentColor = Color.White,
-                    ),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    BodyLargeRegularLight(value = "Find my Device")
+                    Image(
+                        painter = painterResource(
+                            id = R.drawable.register_image
+                        ),
+                        contentDescription = null,
+                    )
+                    Button(
+                        onClick = {},
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = PrimaryHoverLight,
+                            contentColor = Color.White,
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        BodyLargeRegularLight(value = "Register Device")
+                    }
+                    Button(
+                        onClick = {},
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = PrimaryHoverLight,
+                            contentColor = Color.White,
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        BodyLargeRegularLight(value = "Find my Device")
+                    }
                 }
             }
         },

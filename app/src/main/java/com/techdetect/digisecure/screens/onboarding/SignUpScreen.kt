@@ -48,6 +48,7 @@ import com.techdetect.digisecure.app_components.BodySmallRegular
 import com.techdetect.digisecure.app_components.CaptionOne
 import com.techdetect.digisecure.app_components.CaptionTwo
 import com.techdetect.digisecure.app_components.ErrorBodySmallRegular
+import com.techdetect.digisecure.app_components.HeadingOne
 import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.LargeSpacer
 import com.techdetect.digisecure.app_components.LargestSpacer
@@ -124,7 +125,7 @@ fun SignUpScreen(navController: NavHostController, authViewModel: AuthViewModel)
             }
         }
         MediumSpacer
-        HeadingThree(value = "Create New Account")
+        HeadingOne(value = "Create New Account")
         SmallSpacer
         BodySmallMedium(value = "Please fill in the form to continue")
         LargeSpacer
@@ -265,7 +266,7 @@ fun SignUpScreen(navController: NavHostController, authViewModel: AuthViewModel)
                 authErrorMessage = MutableLiveData()
             )
                       },
-            enabled = areFieldsFilled,
+            enabled = areFieldsFilled && isPasswordValid(password),
             colors = ButtonDefaults.buttonColors(
                 containerColor = PrimaryHoverNormal,
                 contentColor = Color.White,

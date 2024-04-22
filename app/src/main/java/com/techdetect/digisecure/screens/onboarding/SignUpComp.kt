@@ -47,6 +47,7 @@ import com.techdetect.digisecure.app_components.BodySmallRegular
 import com.techdetect.digisecure.app_components.CaptionOne
 import com.techdetect.digisecure.app_components.CaptionTwo
 import com.techdetect.digisecure.app_components.ErrorBodySmallRegular
+import com.techdetect.digisecure.app_components.HeadingOne
 import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.LargeSpacer
 import com.techdetect.digisecure.app_components.MediumSpacer
@@ -123,7 +124,7 @@ fun SignUpCompScreen(navController: NavHostController, authViewModel: AuthViewMo
         }
     }
         MediumSpacer
-        HeadingThree(value = "Create New Account")
+        HeadingOne(value = "Create New Account")
         SmallSpacer
         BodySmallMedium(value = "Please fill in the form to continue")
         MediumSpacer
@@ -335,7 +336,7 @@ fun SignUpCompScreen(navController: NavHostController, authViewModel: AuthViewMo
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            CaptionTwo(value = "Have An Account?")
+            CaptionOne(value = "Have An Account?")
             TextButton(
                 onClick = { navController.navigate(Routes.SignInRoute) },
             ) {
