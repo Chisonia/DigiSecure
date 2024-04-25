@@ -1,5 +1,4 @@
 package com.techdetect.digisecure.screens.onboarding
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -27,33 +26,30 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import com.google.firebase.auth.FirebaseAuth
 import com.techdetect.digisecure.R
 import com.techdetect.digisecure.Routes
 import com.techdetect.digisecure.app_components.BodyLargeRegular
+import com.techdetect.digisecure.app_components.BodyLargeRegularLight
 import com.techdetect.digisecure.app_components.BodyMediumMedium
 import com.techdetect.digisecure.app_components.BodySmallMedium
-import com.techdetect.digisecure.app_components.BodySmallRegular
 import com.techdetect.digisecure.app_components.CaptionOne
 import com.techdetect.digisecure.app_components.CaptionTwo
 import com.techdetect.digisecure.app_components.ErrorBodySmallRegular
-import com.techdetect.digisecure.app_components.HeadingOne
 import com.techdetect.digisecure.app_components.HeadingThree
-import com.techdetect.digisecure.app_components.LargeSpacer
+import com.techdetect.digisecure.app_components.HeadingTwo
 import com.techdetect.digisecure.app_components.MediumSpacer
 import com.techdetect.digisecure.app_components.SmallSpacer
 import com.techdetect.digisecure.app_components.componentShape
-import com.techdetect.digisecure.models.AuthViewModel
+import com.techdetect.digisecure.ui.theme.DarkButtonColor
+import com.techdetect.digisecure.ui.theme.DisableColor
+import com.techdetect.digisecure.view_models.AuthViewModel
 import com.techdetect.digisecure.ui.theme.PrimaryGreenLight
 import com.techdetect.digisecure.ui.theme.PrimaryHoverNormal
 import com.techdetect.digisecure.ui.theme.TransparentColor
@@ -97,15 +93,6 @@ fun SignUpCompScreen(navController: NavHostController, authViewModel: AuthViewMo
         val passwordRegex = Regex("^(?=.*[A-Z])(?=.*[0-9])(?=.*[ ,{}[<>():+]!@#$%^&*-]).{10,}$")
         return passwordRegex.matches(password)
     }
-
-    Image(
-        painter = painterResource(id = R.drawable.onboarding_background),
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier.fillMaxSize(),
-        alpha = 1F
-    )
-
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -115,16 +102,16 @@ fun SignUpCompScreen(navController: NavHostController, authViewModel: AuthViewMo
         IconButton(
             onClick = { navController.navigate(Routes.DecisionRoute) }
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.back_icon),
-                contentDescription = "Back Button",
-                modifier = Modifier.size(24.dp),
-                tint = Color.Cyan
-            )
+//            Icon(
+//                painter = painterResource(id = R.drawable.back_icon),
+//                contentDescription = "Back Button",
+//                modifier = Modifier.size(24.dp),
+//                tint = Color.Cyan
+//            )
         }
     }
-        MediumSpacer
-        HeadingOne(value = "Create New Account")
+        SmallSpacer
+        HeadingThree(value = "Create New Account")
         SmallSpacer
         BodySmallMedium(value = "Please fill in the form to continue")
         MediumSpacer
@@ -304,7 +291,7 @@ fun SignUpCompScreen(navController: NavHostController, authViewModel: AuthViewMo
             ErrorBodySmallRegular(value = inputErrorMessage)
         }
 
-        LargeSpacer
+        MediumSpacer
 
         // Sign Up Button
         Button(
@@ -313,22 +300,23 @@ fun SignUpCompScreen(navController: NavHostController, authViewModel: AuthViewMo
                 password = password,
                 email = companyEmail,
                 navController = navController ,
-                authErrorMessage = MutableLiveData()
-            )},
+                authErrorMessage = MutableLiveData(),
+            )
+                      },
             enabled = areFieldsFilled,
             colors = ButtonDefaults.buttonColors(
-                containerColor = PrimaryHoverNormal,
+                containerColor = DarkButtonColor,
                 contentColor = Color.White,
-                disabledContainerColor = TransparentColor,
+                disabledContainerColor = DisableColor,
                 disabledContentColor = Color.White
 
             ),
             modifier = Modifier.fillMaxWidth()
         ) {
-            BodyLargeRegular(value = "Sign Up")
+            BodyLargeRegularLight(value = "Sign Up")
         }
 
-        MediumSpacer
+        SmallSpacer
 
         // Sign In Link
         Row(
@@ -336,7 +324,7 @@ fun SignUpCompScreen(navController: NavHostController, authViewModel: AuthViewMo
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            CaptionOne(value = "Have An Account?")
+            CaptionTwo(value = "Have An Account?")
             TextButton(
                 onClick = { navController.navigate(Routes.SignInRoute) },
             ) {

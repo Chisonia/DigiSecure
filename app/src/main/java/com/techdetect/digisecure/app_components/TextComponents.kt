@@ -18,10 +18,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.techdetect.digisecure.R
 import com.techdetect.digisecure.ui.theme.DefaultColor
+import com.techdetect.digisecure.ui.theme.PrimaryGreenDark
 import com.techdetect.digisecure.ui.theme.PrimaryGreenNormal
 import com.techdetect.digisecure.ui.theme.PrimaryHoverDark
 import com.techdetect.digisecure.ui.theme.PrimaryHoverLight
+import com.techdetect.digisecure.ui.theme.SecondaryBlue1Dark
+import com.techdetect.digisecure.ui.theme.SecondaryBlue1Normal
 import com.techdetect.digisecure.ui.theme.SecondaryBlue2Dark
+import com.techdetect.digisecure.ui.theme.SecondaryBlue2NormalActive
+import com.techdetect.digisecure.ui.theme.SuccessColor
 import com.techdetect.digisecure.ui.theme.TextColor
 import com.techdetect.digisecure.ui.theme.WarningColor
 
@@ -29,7 +34,7 @@ import com.techdetect.digisecure.ui.theme.WarningColor
 fun HeadingOne(value: String){
     Text(
         text = value,
-        color = PrimaryHoverLight,
+        color = PrimaryHoverDark,
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 40.sp,
@@ -41,7 +46,7 @@ fun HeadingOne(value: String){
 fun HeadingTwo(value: String){
     Text(
         text = value,
-        color = PrimaryHoverLight,
+        color = PrimaryHoverDark,
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 32.sp,
@@ -53,7 +58,7 @@ fun HeadingTwo(value: String){
 fun HeadingThree(value: String){
     Text(
         text = value,
-        color = PrimaryHoverLight,
+        color = PrimaryHoverDark,
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 24.sp,
@@ -68,12 +73,23 @@ fun HeadingFour(value: String){
         text = value,
         color = PrimaryHoverDark,
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
+        textAlign = TextAlign.Center,
         style = TextStyle(
             fontSize = 18.sp,
         )
     )
 }
-
+@Composable
+fun HeadingFourDark(value: String){
+    Text(
+        text = value,
+        color = PrimaryHoverDark,
+        fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
+        style = TextStyle(
+            fontSize = 18.sp,
+        )
+    )
+}
 
 val raleWayFontFamily = FontFamily(
     Font(R.font.raleway_semibold, FontWeight.SemiBold),
@@ -159,7 +175,7 @@ fun BodyLargeMedium(value: String){
 fun BodyLargeRegular(value: String){
     Text(
         text = value,
-        color = Color.White,
+        color = PrimaryHoverDark,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.Normal,
         style = TextStyle(
             fontSize = 20.sp,
@@ -171,7 +187,7 @@ fun BodyLargeRegular(value: String){
 fun BodyLargeRegularLight(value: String){
     Text(
         text = value,
-        color = PrimaryGreenNormal,
+        color = PrimaryHoverLight,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.Normal,
         style = TextStyle(
             fontSize = 20.sp,
@@ -232,7 +248,21 @@ fun BodyMediumMediumLight(value: String){
             fontSize = 18.sp,
         )
     )
+}@Composable
+fun BodyMediumMediumSuccess(value: String){
+    Text(
+        text = value,
+        modifier = Modifier
+            .fillMaxWidth(),
+        color = SuccessColor,
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.Medium,
+        style = TextStyle(
+            fontSize = 18.sp,
+        )
+    )
 }
+
+
 
 @Composable
 fun BodyMediumRegular(value: String){
@@ -263,7 +293,7 @@ fun BodySmallSemiBold(value: String){
 fun BodySmallMedium(value: String){
     Text(
         text = value,
-        color = PrimaryHoverLight,
+        color = PrimaryHoverDark,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.Medium,
         style = TextStyle(
             fontSize = 16.sp,
@@ -275,7 +305,7 @@ fun BodySmallMedium(value: String){
 fun BodySmallRegular(value: String){
     Text(
         text = value,
-        color = TextColor,
+        color = PrimaryGreenNormal,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.Normal,
         style = TextStyle(
             fontSize = 16.sp,
@@ -300,7 +330,7 @@ fun ErrorBodySmallRegular(value: String){
 fun CaptionOne(value: String){
     Text(
         text = value,
-        color = PrimaryHoverLight,
+        color = PrimaryHoverDark,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 16.sp,
@@ -312,7 +342,7 @@ fun CaptionOne(value: String){
 fun CaptionTwo(value: String){
     Text(
         text = value,
-        color = PrimaryHoverLight,
+        color = PrimaryGreenNormal,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 12.sp,

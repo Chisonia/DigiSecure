@@ -1,7 +1,6 @@
-package com.techdetect.digisecure.models
+package com.techdetect.digisecure.view_models
 
 import android.os.CountDownTimer
-import android.os.Handler
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.mutableStateOf
@@ -17,9 +16,10 @@ import com.techdetect.digisecure.Routes
 
 
 class AuthViewModel: ViewModel() {
-    private var isUserAuthenticated = mutableStateOf(false)
-    private var errorMessage = mutableStateOf("")
+    var isUserAuthenticated = mutableStateOf(false)
+    var errorMessage = mutableStateOf("")
     var signInErrorMessage = mutableStateOf("")
+
     fun signInUser(email: String, password: String, navController: NavController) {
         Firebase.auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -50,10 +50,10 @@ class AuthViewModel: ViewModel() {
     }
 
 
-    //    fun signOut() {
-//        Firebase.auth.signOut()
-//        isUserAuthenticated.value = false // Update the user authentication state
-//    }
+        fun signOutUser() {
+        Firebase.auth.signOut()
+        isUserAuthenticated.value = false // Update the user authentication state
+    }
 
 
 
@@ -96,13 +96,12 @@ class AuthViewModel: ViewModel() {
             ?.addOnCompleteListener { verificationTask ->
                 if (verificationTask.isSuccessful) {
                     Log.d("Verification Email", "Verification email sent")
-                    // Navigate to verification success screen
-                    navController.navigate(Routes.VerificationSuccessRoute)
+                    // Call startVerificationLinkTimer after sending the verification email
                     startVerificationLinkTimer(navController)
                 } else {
                     Log.e("Verification Email", "Failed to send verification email: ${verificationTask.exception}")
                     // Show an error message to the user
-                    Toast.makeText(navController.context, "Failed to send verification email", Toast.LENGTH_LONG).show()
+                    val verifyErrorMessage = "Failed to send verification email: ${verificationTask.exception?.message}"
                     // You can handle the error case here, such as showing a message to the user or retrying the verification email
                 }
             }
@@ -127,6 +126,7 @@ class AuthViewModel: ViewModel() {
             }
         }.start()
     }
+
 //    private fun sendVerificationEmail(email: String, navController: NavController) {
 //        val verificationCode = generateVerificationCode() // Generate verification code
 //        AuthenticationManager.sendVerificationCode(email, verificationCode)

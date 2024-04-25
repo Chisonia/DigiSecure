@@ -27,34 +27,30 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.techdetect.digisecure.R
 import com.techdetect.digisecure.Routes
-import com.techdetect.digisecure.app_components.BodyLargeRegular
+import com.techdetect.digisecure.app_components.BodyLargeRegularLight
 import com.techdetect.digisecure.app_components.BodyMediumMedium
 import com.techdetect.digisecure.app_components.BodySmallMedium
 import com.techdetect.digisecure.app_components.CaptionOne
 import com.techdetect.digisecure.app_components.CaptionTwo
 import com.techdetect.digisecure.app_components.ErrorBodySmallRegular
-import com.techdetect.digisecure.app_components.ForgotPassword
-import com.techdetect.digisecure.app_components.HeadingOne
 import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.HeadingTwo
 import com.techdetect.digisecure.app_components.LargeSpacer
-import com.techdetect.digisecure.app_components.LargestSpacer
+import com.techdetect.digisecure.app_components.MediumSpacer
 import com.techdetect.digisecure.app_components.SmallSpacer
 import com.techdetect.digisecure.app_components.componentShape
-import com.techdetect.digisecure.models.AuthViewModel
+import com.techdetect.digisecure.view_models.AuthViewModel
+import com.techdetect.digisecure.ui.theme.DarkButtonColor
+import com.techdetect.digisecure.ui.theme.DisableColor
 import com.techdetect.digisecure.ui.theme.PrimaryGreenLight
-import com.techdetect.digisecure.ui.theme.PrimaryHoverNormal
-import com.techdetect.digisecure.ui.theme.TransparentColor
 import com.techdetect.digisecure.ui.theme.WarningColor
 
 
@@ -83,21 +79,13 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
     }
 
     ErrorBodySmallRegular(value = signInErrorMessage)
-    Image(
-        painter = painterResource(id = R.drawable.onboarding_background),
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier
-            .fillMaxSize(),
-        alpha = 1F
-    )
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .padding(top = 94.dp, start = 16.dp, end = 16.dp)
             .fillMaxSize()
     ) {
-        HeadingOne(value = "Welcome Back!")
+        HeadingThree(value = "Welcome Back!")
         SmallSpacer
         BodySmallMedium(value = "Please sign into your account")
         LargeSpacer
@@ -186,7 +174,7 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
                 modifier = Modifier.padding(bottom = 8.dp)
             )
         }
-        LargeSpacer
+        MediumSpacer
         Button(
             onClick = {
                 authViewModel.signInUser(
@@ -196,9 +184,9 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
             )},
             enabled = areFieldsFilled,
             colors = ButtonDefaults.buttonColors(
-                containerColor = PrimaryHoverNormal,
+                containerColor = DarkButtonColor,
                 contentColor = Color.White,
-                disabledContainerColor = TransparentColor,
+                disabledContainerColor = DisableColor,
                 disabledContentColor = Color.White
 
             ),
@@ -206,15 +194,15 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
                 .fillMaxWidth()
 
         ) {
-            BodyLargeRegular(value = "Sign In")
+            BodyLargeRegularLight(value = "Sign In")
         }
-        LargestSpacer
+        SmallSpacer
         Row(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            CaptionOne(value = "Don't Have An Account?")
+            CaptionTwo(value = "Don't Have An Account?")
             TextButton(
                 onClick = {navController.navigate(Routes.DecisionRoute)}
             ) {

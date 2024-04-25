@@ -60,6 +60,7 @@ dependencies {
     implementation("androidx.compose.material3:material3-android:1.2.0-rc01")
     implementation("androidx.compose.material3:material3-window-size-class:1.1.2")
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.play.services.location)
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
@@ -90,4 +91,8 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation("com.google.android.gms:play-services-location:21.2.0")
+    implementation("com.google.maps.android:maps-compose:2.14.0")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
 }

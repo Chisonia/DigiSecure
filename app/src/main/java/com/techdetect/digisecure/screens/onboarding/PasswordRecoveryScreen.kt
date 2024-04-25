@@ -18,9 +18,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,17 +35,18 @@ import androidx.navigation.NavHostController
 import com.techdetect.digisecure.R
 import com.techdetect.digisecure.Routes
 import com.techdetect.digisecure.app_components.BodyLargeRegular
+import com.techdetect.digisecure.app_components.BodyLargeRegularLight
 import com.techdetect.digisecure.app_components.BodyMediumMedium
 import com.techdetect.digisecure.app_components.BodySmallMedium
-import com.techdetect.digisecure.app_components.CaptionTwo
 import com.techdetect.digisecure.app_components.ErrorBodySmallRegular
 import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.LargeSpacer
-import com.techdetect.digisecure.app_components.LargestSpacer
 import com.techdetect.digisecure.app_components.MediumSpacer
 import com.techdetect.digisecure.app_components.SmallSpacer
 import com.techdetect.digisecure.app_components.componentShape
-import com.techdetect.digisecure.models.AuthViewModel
+import com.techdetect.digisecure.ui.theme.DarkButtonColor
+import com.techdetect.digisecure.ui.theme.DisableColor
+import com.techdetect.digisecure.view_models.AuthViewModel
 import com.techdetect.digisecure.ui.theme.PrimaryGreenLight
 import com.techdetect.digisecure.ui.theme.PrimaryHoverNormal
 import com.techdetect.digisecure.ui.theme.TransparentColor
@@ -68,14 +66,6 @@ fun PasswordRecoveryScreen(navController: NavHostController, authViewModel: Auth
             else -> ""
         }
     }
-    Image(
-        painter = painterResource(id = R.drawable.onboarding_background),
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier
-            .fillMaxSize(),
-        alpha = 1F
-    )
     Column (
         horizontalAlignment = Alignment.Start,
         modifier = Modifier
@@ -129,19 +119,20 @@ fun PasswordRecoveryScreen(navController: NavHostController, authViewModel: Auth
         if (inputErrorMessage.isNotEmpty()) {
             ErrorBodySmallRegular(value = inputErrorMessage)
         }
-        LargestSpacer
+        MediumSpacer
         Button(
             onClick = {authViewModel.resetPassword(email = userEmail, navController = navController)},
             enabled = areFieldsFilled,
             colors = ButtonDefaults.buttonColors(
-                containerColor = PrimaryHoverNormal,
+                containerColor = DarkButtonColor,
                 contentColor = Color.White,
-                disabledContainerColor = TransparentColor,
+                disabledContainerColor = DisableColor,
                 disabledContentColor = Color.White
+
             ),
             modifier = Modifier.fillMaxWidth()
         ) {
-            BodyLargeRegular(value = "Send Reset Link")
+            BodyLargeRegularLight(value = "Send Reset Link")
         }
     }
 }

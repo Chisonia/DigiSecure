@@ -18,10 +18,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -30,22 +33,27 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.techdetect.digisecure.R
 import com.techdetect.digisecure.Routes
+import com.techdetect.digisecure.app_components.BodyLargeRegular
 import com.techdetect.digisecure.app_components.BodyLargeRegularLight
 import com.techdetect.digisecure.app_components.BodySmallSemiBold
 import com.techdetect.digisecure.app_components.HeadingFour
+import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.HeadingTwo
+import com.techdetect.digisecure.app_components.LargeSpacer
+import com.techdetect.digisecure.app_components.MediumSpacer
 import com.techdetect.digisecure.ui.theme.PrimaryHoverDark
 import com.techdetect.digisecure.ui.theme.PrimaryHoverLight
+import com.techdetect.digisecure.ui.theme.SecondaryBlue1HoverLight
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 
 @Composable
-fun HomeScreen(navController: NavController){
+fun HomeScreen(navController: NavController, userName: String){
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { HeadingFour("Secure Your Gadgets") },
+                title = { HeadingFour("Hello, $userName") },
                 colors = topAppBarColors(
                     containerColor = PrimaryHoverLight,
                     actionIconContentColor = PrimaryHoverDark
@@ -57,7 +65,9 @@ fun HomeScreen(navController: NavController){
                             contentDescription = "Notifications"
                         )
                     }
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(
+                        onClick = { navController.navigate(Routes.PushNotificationScreenRoute) }
+                    ) {
                         Icon(
                             imageVector = Icons.Default.Notifications,
                             contentDescription = "Notifications"
@@ -67,29 +77,46 @@ fun HomeScreen(navController: NavController){
             )
         },
         content = { paddingValues ->
-            Box (
+            Surface (
                 Modifier.padding(paddingValues)
             ){
+                Image(
+                    painter = painterResource(id = R.drawable.account_background1),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    alpha = 1F
+                )
                 Column(
-                   modifier = Modifier.fillMaxSize()
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.padding(16.dp)
                 ) {
                     Image(
                         painter = painterResource(
                             id = R.drawable.register_image
                         ),
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxWidth(),
                         contentDescription = null,
+                        alignment = Alignment.Center
                     )
+
+                    LargeSpacer
                     Button(
-                        onClick = {},
+                        onClick = {navController.navigate(Routes.RegisterDeviceScreenRoute)},
                         colors = ButtonDefaults.buttonColors(
                             containerColor = PrimaryHoverLight,
                             contentColor = Color.White,
                         ),
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .fillMaxWidth(),
+                        shape = ButtonDefaults.elevatedShape
                     ) {
-                        BodyLargeRegularLight(value = "Register Device")
+                        BodyLargeRegular(value = "Register Device")
                     }
+
+                    MediumSpacer
                     Button(
                         onClick = {},
                         colors = ButtonDefaults.buttonColors(
@@ -97,9 +124,11 @@ fun HomeScreen(navController: NavController){
                             contentColor = Color.White,
                         ),
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .fillMaxWidth(),
+                        shape = ButtonDefaults.elevatedShape,
+                        elevation  = ButtonDefaults.buttonElevation()
                     ) {
-                        BodyLargeRegularLight(value = "Find my Device")
+                        BodyLargeRegular(value = "Find my Device")
                     }
                 }
             }
@@ -132,6 +161,7 @@ fun HomeScreen(navController: NavController){
                     label = {
                         BodySmallSemiBold(value = "Account")
                     },
+                    colors  = NavigationBarItemDefaults.colors(SecondaryBlue1HoverLight),
                     selected = false,
                     onClick = {navController.navigate(Routes.AccountScreenRoute)}
                 )

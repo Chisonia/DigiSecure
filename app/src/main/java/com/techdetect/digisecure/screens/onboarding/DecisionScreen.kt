@@ -21,40 +21,36 @@ import com.techdetect.digisecure.R
 import com.techdetect.digisecure.Routes
 import com.techdetect.digisecure.app_components.BodyLargeRegularLight
 import com.techdetect.digisecure.app_components.BodyMediumMediumLight
+import com.techdetect.digisecure.app_components.CaptionOne
+import com.techdetect.digisecure.app_components.HeadingFour
 import com.techdetect.digisecure.app_components.LargeSpacer
 import com.techdetect.digisecure.app_components.MediumSpacer
 import com.techdetect.digisecure.app_components.SmallSpacer
+import com.techdetect.digisecure.ui.theme.DarkButtonColor
+import com.techdetect.digisecure.ui.theme.DisableColor
 import com.techdetect.digisecure.ui.theme.PrimaryHoverLight
 
 @Composable
 fun DecisionScreen(navController: NavHostController){
-    Image(
-        painter = painterResource(id = R.drawable.onboarding_background),
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier.fillMaxSize(),
-        alpha = 1F
-    )
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,
         modifier = Modifier.padding(horizontal = 16.dp, vertical = 128.dp)
     ) {
         Image(
-            painter = painterResource(id = R.drawable.logo),
+            painter = painterResource(id = R.drawable.new_logo),
             contentDescription = "",
             modifier = Modifier.size(200.dp)
         )
         LargeSpacer
-        BodyMediumMediumLight(
-            value = "Select your method of Sign in/Sign Up"
+        HeadingFour(
+            value = "Select your method of Sign Up"
         )
-        SmallSpacer
+        MediumSpacer
         Button(
             onClick = {navController.navigate(Routes.SignUpRoute)},
             colors = ButtonDefaults.buttonColors(
-                containerColor = PrimaryHoverLight,
-                contentColor = Color.White,
+                containerColor = DarkButtonColor,
             ),
             modifier = Modifier
                 .fillMaxWidth()
@@ -65,8 +61,7 @@ fun DecisionScreen(navController: NavHostController){
         Button(
             onClick = {navController.navigate(Routes.SignUpCompRoute)},
             colors = ButtonDefaults.buttonColors(
-                containerColor = PrimaryHoverLight,
-                contentColor = Color.White,
+                containerColor = DarkButtonColor,
             ),
             modifier = Modifier
                 .fillMaxWidth()

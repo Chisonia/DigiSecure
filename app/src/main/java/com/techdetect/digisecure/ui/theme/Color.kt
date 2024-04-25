@@ -80,9 +80,11 @@ val SuccessColor = Color(0xFF208B3A)
 val WarningColor = Color(0xFFDC2F02)
 val InformationAlertColor = Color(0xFFADC4DD)
 val DisableColor = Color(0xFFA1A3A7)
-val DisableTextColor = Color(0xFFB6B6B6)
+val DisableTextColor = Color(0xFF2B2D30)
 val DefaultColor = Color(0xFF9FA1A1)
 val TextColor = Color(0xFF2C2A2A)
 
 
-val TransparentColor = Color(0x333C4F76)
+val TransparentColor = Color(0x4BC8FCEA)
+val ButtonColor = Color(0xFFE1E6E3)
+val DarkButtonColor = Color(0xFF3A5643)
