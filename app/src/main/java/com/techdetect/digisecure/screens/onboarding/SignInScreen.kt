@@ -78,7 +78,7 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
         }
     }
 
-    ErrorBodySmallRegular(value = signInErrorMessage)
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -174,6 +174,8 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
                 modifier = Modifier.padding(bottom = 8.dp)
             )
         }
+        SmallSpacer
+        ErrorBodySmallRegular(value = signInErrorMessage)
         MediumSpacer
         Button(
             onClick = {

@@ -8,15 +8,12 @@ object Routes {
     const val PasswordRecoveryRoute = "password_recovery_screen_route"
     const val ResetPasswordRoute = "reset_password_screen_route"
     const val ResetSuccessRoute = "reset_success_screen_route"
-    const val VerificationRoute = "verification_screen_route"
     const val VerificationSuccessRoute = "verification_success_screen_route"
     const val DecisionRoute = "decision_screen_route"
     const val SignUpCompRoute = "sign_up_comp_screen_route"
     const val HomeScreenRoute = "home_screen_route"
     const val AccountScreenRoute = "account_screen_route"
     const val RegisterDeviceScreenRoute = "register_device_screen_route"
-    const val DeviceLocationScreenRoute = "device_location_screen_route"
-    const val GeofenceScreenRoute = "geo_fence_screen_route"
     const val PushNotificationScreenRoute = "push_notification_screen_route"
     // Add more route strings as needed
 }

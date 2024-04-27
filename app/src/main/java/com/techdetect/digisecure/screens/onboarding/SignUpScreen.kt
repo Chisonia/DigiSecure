@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -163,6 +164,8 @@ fun SignUpScreen(navController: NavHostController, authViewModel: AuthViewModel)
                 areFieldsFilled = inputErrorMessage.isEmpty()
             },
             placeholder = { BodyMediumMedium(value = "Email Address") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+            keyboardActions = KeyboardActions.Default,
             singleLine = true,
             shape = componentShape.large,
             colors = OutlinedTextFieldDefaults.colors(

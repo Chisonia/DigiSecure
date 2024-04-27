@@ -97,6 +97,7 @@ class AuthViewModel: ViewModel() {
                 if (verificationTask.isSuccessful) {
                     Log.d("Verification Email", "Verification email sent")
                     // Call startVerificationLinkTimer after sending the verification email
+                    navController.navigate(Routes.VerificationSuccessRoute)
                     startVerificationLinkTimer(navController)
                 } else {
                     Log.e("Verification Email", "Failed to send verification email: ${verificationTask.exception}")
