@@ -38,6 +38,7 @@ import com.techdetect.digisecure.app_components.BodyLargeRegular
 import com.techdetect.digisecure.app_components.BodyLargeRegularLight
 import com.techdetect.digisecure.app_components.BodyMediumMedium
 import com.techdetect.digisecure.app_components.BodySmallMedium
+import com.techdetect.digisecure.app_components.BodySmallMedium1
 import com.techdetect.digisecure.app_components.ErrorBodySmallRegular
 import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.LargeSpacer
@@ -72,25 +73,25 @@ fun PasswordRecoveryScreen(navController: NavHostController, authViewModel: Auth
             .padding(top = 64.dp, start = 16.dp, end = 16.dp)
             .fillMaxSize()
     ){
-        Row(horizontalArrangement = Arrangement.Start, modifier = Modifier.fillMaxWidth()) {
-            IconButton(
-                onClick = {
-                    navController.navigate(Routes.SignInRoute)
-                }
-            )
-            {
-                Icon(
-                    painter = painterResource(id = R.drawable.back_icon),
-                    contentDescription = "Back Button",
-                    modifier = Modifier.size(24.dp),
-                    tint = Color.Cyan
-                )
-            }
-        }
+//        Row(horizontalArrangement = Arrangement.Start, modifier = Modifier.fillMaxWidth()) {
+//            IconButton(
+//                onClick = {
+//                    navController.navigate(Routes.SignInRoute)
+//                }
+//            )
+//            {
+//                Icon(
+//                    painter = painterResource(id = R.drawable.back_icon),
+//                    contentDescription = "Back Button",
+//                    modifier = Modifier.size(24.dp),
+//                    tint = Color.Cyan
+//                )
+//            }
+//        }
         MediumSpacer
         HeadingThree(value = "Password Recovery")
         SmallSpacer
-        BodySmallMedium(value = "Enter the email address you used for registration.")
+        BodySmallMedium1(value = "Enter the email address you used for registration.")
         LargeSpacer
         OutlinedTextField(
             value = userEmail,

@@ -33,6 +33,7 @@ import androidx.navigation.NavHostController
 import com.techdetect.digisecure.R
 import com.techdetect.digisecure.Routes
 import com.techdetect.digisecure.app_components.BodyLargeRegular
+import com.techdetect.digisecure.app_components.BodyLargeRegularLight
 import com.techdetect.digisecure.app_components.BodyMediumMedium
 import com.techdetect.digisecure.app_components.ErrorBodySmallRegular
 import com.techdetect.digisecure.app_components.HeadingThree
@@ -185,7 +186,7 @@ fun ResetPasswordScreen(navController: NavHostController, authViewModel: AuthVie
             ),
             modifier = Modifier.fillMaxWidth()
         ) {
-            BodyLargeRegular(value = "Reset")
+            BodyLargeRegularLight(value = "Reset")
         }
     }
 }

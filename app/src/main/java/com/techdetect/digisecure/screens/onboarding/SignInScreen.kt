@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -31,6 +32,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.techdetect.digisecure.R
@@ -51,6 +53,7 @@ import com.techdetect.digisecure.view_models.AuthViewModel
 import com.techdetect.digisecure.ui.theme.DarkButtonColor
 import com.techdetect.digisecure.ui.theme.DisableColor
 import com.techdetect.digisecure.ui.theme.PrimaryGreenLight
+import com.techdetect.digisecure.ui.theme.PrimaryGreenNormal
 import com.techdetect.digisecure.ui.theme.WarningColor
 
 
@@ -63,6 +66,7 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
     var inputErrorMessage by remember { mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(false) }
     val signInErrorMessage by authViewModel.signInErrorMessage
+    var isLoading by remember { mutableStateOf(false) } // State to track loading state
 
     val icon = if (passwordVisibility)
         painterResource(id = R.drawable.visibilityoff)
@@ -151,7 +155,19 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
                 .border(0.dp, Color.Transparent)
                 .background(PrimaryGreenLight)
         )
-        SmallSpacer
+        if (isLoading) {
+            CircularProgressIndicator(
+                color = PrimaryGreenNormal
+            ) // Display circular loading indicator while loading
+        } else {
+            // Display error message if sign in failed
+            if (errorMessage.isNotEmpty()) {
+                ErrorBodySmallRegular(value = errorMessage)
+            }
+        }
+        if (signInErrorMessage.isNotEmpty()) {
+            ErrorBodySmallRegular(value = signInErrorMessage)
+        }
         Row (
             horizontalArrangement = Arrangement.End,
             modifier = Modifier.fillMaxWidth()
@@ -166,19 +182,10 @@ fun SignInScreen(navController: NavHostController, authViewModel: AuthViewModel)
 
             }
         }
-
-        if (inputErrorMessage.isNotEmpty()) {
-            Text(
-                text = errorMessage,
-                color = WarningColor,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-        }
-        SmallSpacer
-        ErrorBodySmallRegular(value = signInErrorMessage)
         MediumSpacer
         Button(
             onClick = {
+                isLoading = true
                 authViewModel.signInUser(
                 email = userEmail,
                 password = password,

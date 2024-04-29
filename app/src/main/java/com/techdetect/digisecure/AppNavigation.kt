@@ -14,8 +14,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.CameraPositionState
-import com.techdetect.digisecure.main_app_screens.AccountScreen
 import com.techdetect.digisecure.main_app_screens.HomeScreen
+import com.techdetect.digisecure.main_app_screens.MenuPage
 import com.techdetect.digisecure.main_app_screens.RegisterDeviceScreen
 import com.techdetect.digisecure.view_models.AuthViewModel
 import com.techdetect.digisecure.screens.onboarding.DecisionScreen
@@ -34,7 +34,7 @@ fun AppNavigation(context: Context,
                   currentLocation: LatLng,
                   cameraPositionState: CameraPositionState,
                   startLocationUpdates: () -> Unit,
-                  ) {
+) {
     val navController = rememberNavController()
     val savedState = navController.currentBackStackEntryAsState().value?.savedStateHandle
     val userEmail = savedState?.get<String>("userEmail")
@@ -87,15 +87,16 @@ fun AppNavigation(context: Context,
         composable(route = Routes.HomeScreenRoute) {
             HomeScreen(navController, userName)
         }
-        composable(route = Routes.AccountScreenRoute) {
-            val authViewModel: AuthViewModel = viewModel()
-            AccountScreen(navController, userName, authViewModel)
-        }
+//        composable(route = Routes.AccountScreenRoute) {
+//            val authViewModel: AuthViewModel = viewModel()
+//            AccountScreen(navController, userName, authViewModel)
+//        }
 
         composable(route = Routes.RegisterDeviceScreenRoute) {
-            RegisterDeviceScreen(context, navController, currentLocation, cameraPositionState) { startLocationUpdates() }
+            RegisterDeviceScreen(context, navController)
+        }
+        composable(route = Routes.MenuPageRoute) {
+            MenuPage( navController)
         }
     }
 }
-
-

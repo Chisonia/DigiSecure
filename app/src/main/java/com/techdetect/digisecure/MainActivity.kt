@@ -150,4 +150,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-

@@ -1,5 +1,6 @@
 package com.techdetect.digisecure.view_models
 
+import android.content.ContentValues.TAG
 import android.os.CountDownTimer
 import android.util.Log
 import android.widget.Toast
@@ -50,9 +51,9 @@ class AuthViewModel: ViewModel() {
     }
 
 
-        fun signOutUser() {
+    fun signOutUser() {
         Firebase.auth.signOut()
-        isUserAuthenticated.value = false // Update the user authentication state
+            isUserAuthenticated.value = false // Update the user authentication state
     }
 
 

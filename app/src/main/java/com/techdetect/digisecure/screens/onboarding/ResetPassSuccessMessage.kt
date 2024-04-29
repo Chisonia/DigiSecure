@@ -29,6 +29,7 @@ import androidx.navigation.NavHostController
 import com.techdetect.digisecure.R
 import com.techdetect.digisecure.Routes
 import com.techdetect.digisecure.app_components.BodyLargeRegular
+import com.techdetect.digisecure.app_components.BodyLargeRegularLight
 import com.techdetect.digisecure.app_components.BodyLargeSemiBold
 import com.techdetect.digisecure.app_components.CaptionOneBlack
 import com.techdetect.digisecure.app_components.CaptionTwoBlack
@@ -67,7 +68,7 @@ fun ResetSuccessMessage(navController: NavHostController) {
                 MediumSpacer
                 BodyLargeSemiBold(value = "Check your email for password reset link")
                 Text(
-                    text = "Sign In with your new assword. ",
+                    text = "Sign In with your new password. ",
                     color = TextColor,
                     textAlign = TextAlign.Center,
                     fontFamily = poppinsFontFamily,
@@ -86,7 +87,7 @@ fun ResetSuccessMessage(navController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                 ) {
-                    BodyLargeRegular(value = "Sign In")
+                    BodyLargeRegularLight(value = "Sign In")
                 }
                 SmallSpacer
                 Row(

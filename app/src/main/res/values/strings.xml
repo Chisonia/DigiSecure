@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DigiSecure</string>
     <string name="google_map_api">AIzaSyCcRyYtc5zlTYOa3oC6uMjJ3Q7DxrprpSY</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

@@ -251,6 +251,15 @@ fun SignUpCompScreen(navController: NavHostController, authViewModel: AuthViewMo
                 .background(PrimaryGreenLight)
         )
         SmallSpacer
+        // Error Messages
+        if (errorMessage.isNotEmpty()) {
+            ErrorBodySmallRegular(value = errorMessage)
+        }
+
+        if (inputErrorMessage.isNotEmpty()) {
+            ErrorBodySmallRegular(value = inputErrorMessage)
+        }
+        SmallSpacer
 
         // Confirm Password TextField
         OutlinedTextField(
@@ -283,15 +292,6 @@ fun SignUpCompScreen(navController: NavHostController, authViewModel: AuthViewMo
                 .border(0.dp, Color.Transparent)
                 .background(PrimaryGreenLight)
         )
-
-        // Error Messages
-        if (errorMessage.isNotEmpty()) {
-            ErrorBodySmallRegular(value = errorMessage)
-        }
-
-        if (inputErrorMessage.isNotEmpty()) {
-            ErrorBodySmallRegular(value = inputErrorMessage)
-        }
 
         MediumSpacer
 

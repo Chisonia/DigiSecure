@@ -34,7 +34,7 @@ import com.techdetect.digisecure.ui.theme.WarningColor
 fun HeadingOne(value: String){
     Text(
         text = value,
-        color = PrimaryHoverDark,
+        color = PrimaryHoverLight,
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 40.sp,
@@ -46,7 +46,7 @@ fun HeadingOne(value: String){
 fun HeadingTwo(value: String){
     Text(
         text = value,
-        color = PrimaryHoverDark,
+        color = PrimaryHoverLight,
         fontFamily = raleWayFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 32.sp,
@@ -268,7 +268,7 @@ fun BodyMediumMediumSuccess(value: String){
 fun BodyMediumRegular(value: String){
     Text(
         text = value,
-        color = TextColor,
+        color = PrimaryHoverLight,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.Normal,
         style = TextStyle(
             fontSize = 18.sp,
@@ -281,7 +281,7 @@ fun BodyMediumRegular(value: String){
 fun BodySmallSemiBold(value: String){
     Text(
         text = value,
-        color = TextColor,
+        color = PrimaryHoverLight,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.SemiBold,
         style = TextStyle(
             fontSize = 16.sp,
@@ -291,6 +291,18 @@ fun BodySmallSemiBold(value: String){
 
 @Composable
 fun BodySmallMedium(value: String){
+    Text(
+        text = value,
+        color = PrimaryHoverDark,
+        textAlign = TextAlign.Center,
+        fontFamily = poppinsFontFamily, fontWeight = FontWeight.Medium,
+        style = TextStyle(
+            fontSize = 16.sp,
+        )
+    )
+}
+@Composable
+fun BodySmallMedium1(value: String){
     Text(
         text = value,
         color = PrimaryHoverDark,
@@ -318,6 +330,7 @@ fun ErrorBodySmallRegular(value: String){
     Text(
         text = value,
         color = WarningColor,
+        textAlign = TextAlign.Center,
         fontFamily = poppinsFontFamily, fontWeight = FontWeight.Normal,
         style = TextStyle(
             fontSize = 16.sp,

@@ -1,21 +1,33 @@
 package com.techdetect.digisecure.main_app_screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.ArrowCircleLeft
+import androidx.compose.material.icons.filled.ArrowCircleRight
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.ArrowRightAlt
 import androidx.compose.material.icons.filled.HeadsetMic
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.KeyboardDoubleArrowDown
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
@@ -35,12 +47,18 @@ import com.techdetect.digisecure.R
 import com.techdetect.digisecure.Routes
 import com.techdetect.digisecure.app_components.BodyLargeRegular
 import com.techdetect.digisecure.app_components.BodyLargeRegularLight
+import com.techdetect.digisecure.app_components.BodyMediumRegular
 import com.techdetect.digisecure.app_components.BodySmallSemiBold
 import com.techdetect.digisecure.app_components.HeadingFour
+import com.techdetect.digisecure.app_components.HeadingOne
 import com.techdetect.digisecure.app_components.HeadingThree
 import com.techdetect.digisecure.app_components.HeadingTwo
 import com.techdetect.digisecure.app_components.LargeSpacer
+import com.techdetect.digisecure.app_components.LargerSpacer
 import com.techdetect.digisecure.app_components.MediumSpacer
+import com.techdetect.digisecure.app_components.MiniSpacer
+import com.techdetect.digisecure.app_components.SmallSpacer
+import com.techdetect.digisecure.ui.theme.PrimaryGreenNormal
 import com.techdetect.digisecure.ui.theme.PrimaryHoverDark
 import com.techdetect.digisecure.ui.theme.PrimaryHoverLight
 import com.techdetect.digisecure.ui.theme.SecondaryBlue1HoverLight
@@ -53,24 +71,25 @@ fun HomeScreen(navController: NavController, userName: String){
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { HeadingFour("Hello, $userName") },
+                title = {
+                    Image(
+                        painter = painterResource(id = R.drawable.new_logo),
+                        contentDescription = null,
+                        modifier = Modifier.size(36.dp)
+
+                    )
+                },
                 colors = topAppBarColors(
                     containerColor = PrimaryHoverLight,
                     actionIconContentColor = PrimaryHoverDark
                 ),
                 actions = {
-
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(imageVector = Icons.Default.HeadsetMic,
-                            contentDescription = "Notifications"
-                        )
-                    }
                     IconButton(
-                        onClick = { navController.navigate(Routes.PushNotificationScreenRoute) }
+                        onClick = {navController.navigate(Routes.MenuPageRoute)},
                     ) {
                         Icon(
-                            imageVector = Icons.Default.Notifications,
-                            contentDescription = "Notifications"
+                            imageVector = Icons.Default.Menu,
+                            contentDescription = "Menu",
                         )
                     }
                 }
@@ -89,83 +108,115 @@ fun HomeScreen(navController: NavController, userName: String){
                     alpha = 1F
                 )
                 Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
+                    horizontalAlignment = Alignment.Start,
                     modifier = Modifier.padding(16.dp)
                 ) {
-                    Image(
-                        painter = painterResource(
-                            id = R.drawable.register_image
-                        ),
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxWidth(),
-                        contentDescription = null,
-                        alignment = Alignment.Center
-                    )
-
-                    LargeSpacer
-                    Button(
-                        onClick = {navController.navigate(Routes.RegisterDeviceScreenRoute)},
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = PrimaryHoverLight,
-                            contentColor = Color.White,
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        shape = ButtonDefaults.elevatedShape
-                    ) {
-                        BodyLargeRegular(value = "Register Device")
-                    }
-
+                    LargerSpacer
+                    HeadingTwo(value = "DigiSecure App-")
+                    MiniSpacer
+                    HeadingTwo(value = "Device Security &")
+                    MiniSpacer
+                    HeadingTwo(value = "Monitoring")
+                    MiniSpacer
+                    HeadingTwo(value = "Solutions")
                     MediumSpacer
-                    Button(
-                        onClick = {},
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = PrimaryHoverLight,
-                            contentColor = Color.White,
-                        ),
+                    BodySmallSemiBold(
+                        value = "A leading intelligent device security" +
+                                "providing businesses and consumers with" +
+                                "cutting-edge device security capabilities")
+                    LargeSpacer
+                    Surface(
                         modifier = Modifier
                             .fillMaxWidth(),
-                        shape = ButtonDefaults.elevatedShape,
-                        elevation  = ButtonDefaults.buttonElevation()
+                        shape = RoundedCornerShape(30.dp),
+                        color = PrimaryGreenNormal
                     ) {
-                        BodyLargeRegular(value = "Find my Device")
+                        Row(
+                            modifier = Modifier.padding(horizontal = 8.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            BodyMediumRegular(value = "Device Management")
+                            IconButton(
+                                onClick = { /*TODO*/ },
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.ArrowCircleRight,
+                                    modifier = Modifier.size(24.dp),
+                                    contentDescription = "",
+                                    tint = PrimaryHoverLight
+                                )
+                            }
+                        }
                     }
+
+                    SmallSpacer
+                    Surface(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        shape = RoundedCornerShape(30.dp),
+                        color = PrimaryGreenNormal
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(horizontal = 8.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            BodyMediumRegular(value = "Incident Response & Recovery")
+                            IconButton(
+                                onClick = { /*TODO*/ },
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.ArrowCircleRight,
+                                    modifier = Modifier.size(24.dp),
+                                    contentDescription = "",
+                                    tint = PrimaryHoverLight
+                                )
+                            }
+                        }
+                    }
+                    SmallSpacer
+                    Surface(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        shape = RoundedCornerShape(30.dp),
+                        color = PrimaryGreenNormal
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(horizontal = 8.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            BodyMediumRegular(value = "Threat Intelligence")
+                            IconButton(
+                                onClick = { /*TODO*/ },
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.ArrowCircleRight,
+                                    modifier = Modifier.size(24.dp),
+                                    contentDescription = "",
+                                    tint = PrimaryHoverLight
+                                )
+                            }
+                        }
+                    }
+                    MediumSpacer
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceAround,
+                        verticalAlignment = Alignment.Bottom,
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.KeyboardDoubleArrowDown,
+                            contentDescription = "",
+                            tint = PrimaryHoverLight,
+                            modifier = Modifier.size(48.dp)
+                        )
+                    }
+
                 }
             }
         },
-        bottomBar = {
-            NavigationBar (
-                containerColor = PrimaryHoverLight,
-                contentColor = PrimaryHoverDark
-            ){
-                NavigationBarItem(
-                    icon = {
-                        Icon(
-                            imageVector = Icons.Default.Home,
-                            contentDescription = null
-                        )
-                    },
-                    label = {
-                        BodySmallSemiBold(value = "Home")
-                    },
-                    selected = true,
-                    onClick = {}
-                )
-                NavigationBarItem(
-                    icon = {
-                        Icon(
-                            imageVector = Icons.Default.AccountCircle,
-                            contentDescription = null
-                        )
-                    },
-                    label = {
-                        BodySmallSemiBold(value = "Account")
-                    },
-                    colors  = NavigationBarItemDefaults.colors(SecondaryBlue1HoverLight),
-                    selected = false,
-                    onClick = {navController.navigate(Routes.AccountScreenRoute)}
-                )
-            }
-        }
     )
 }

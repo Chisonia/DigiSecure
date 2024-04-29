@@ -12,8 +12,11 @@ object Routes {
     const val DecisionRoute = "decision_screen_route"
     const val SignUpCompRoute = "sign_up_comp_screen_route"
     const val HomeScreenRoute = "home_screen_route"
-    const val AccountScreenRoute = "account_screen_route"
+//    const val AccountScreenRoute = "account_screen_route"
     const val RegisterDeviceScreenRoute = "register_device_screen_route"
-    const val PushNotificationScreenRoute = "push_notification_screen_route"
-    // Add more route strings as needed
+    const val MenuPageRoute = "menu_page_route"
+
+
+
+  // Add more route strings as needed
 }
