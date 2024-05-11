@@ -4,7 +4,7 @@ Device Security & Monitoring Solutions
 Features:
 -User friendly onboarding screens
 -Add location 
--Setup Geofence (50m) for the device to be secured
+-Setup Geofence (10m) for the device to be secured
 -Receive notification when device leaves the geofence with the current location of the device
 
 Other features to come:
